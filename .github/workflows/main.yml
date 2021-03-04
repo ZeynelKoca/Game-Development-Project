@@ -1,9 +1,41 @@
-name: Acquire activation file
-on: [push]
+name: Windows build pipeline
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - main
+      - development
+      
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  
 jobs:
-  activation:
-    name: Request manual activation file 🔑
+  windows_build:
+    name: Standalone Windows Build Pipeline
     runs-on: ubuntu-latest
     steps:
-    - name: Unity - Activate
-      uses: game-ci/unity-activate@v1.3
+    - name: Checkout repository
+      uses: actions/checkout@v2.3.4
+      with:
+          fetch-depth: 0
+          lfs: true
+    
+    - name: Cache library files
+      uses: actions/cache@v2.1.4
+      with: 
+        path: Library
+        key: Library
+    
+    - name: Unity - Builder
+      uses: game-ci/unity-builder@v2.0-alpha-6
+      with:
+        targetPlatform: StandaloneWindows
+        projectPath: 'Game Development Project'
+        
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build
+        
