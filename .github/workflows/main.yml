@@ -24,7 +24,7 @@ jobs:
     - name: Cache library files
       uses: actions/cache@v2.1.4
       with: 
-        path: './Game Development Project/Library'
+        path: 'Game Development Project/Library'
         key: Library
     
     - name: Unity - Builder
