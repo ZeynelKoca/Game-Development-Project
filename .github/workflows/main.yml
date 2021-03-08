@@ -21,12 +21,6 @@ jobs:
           fetch-depth: 0
           lfs: true
     
-    - name: Cache library files
-      uses: actions/cache@v2.1.4
-      with: 
-        path: 'Game Development Project/Library'
-        key: Library
-    
     - name: Unity - Builder
       uses: game-ci/unity-builder@v2.0-alpha-6
       with:
