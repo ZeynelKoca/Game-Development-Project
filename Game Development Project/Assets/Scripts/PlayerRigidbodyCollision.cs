@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class PlayerRigidbodyCollision : MonoBehaviour
 {
-    public float pushPower = 2.0F;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public float PushPower = 2.0F;
+    /// <summary>
+    /// When player hits a rigidbody it will apply pushpower to push the rigidbody away
+    /// </summary>
+    /// <param name="hit"></param>
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;
@@ -37,6 +29,6 @@ public class PlayerRigidbodyCollision : MonoBehaviour
         // then you can also multiply the push velocity by that.
 
         // Apply the push
-        body.velocity = pushDir * pushPower;
+        body.velocity = pushDir * PushPower;
     }
 }
