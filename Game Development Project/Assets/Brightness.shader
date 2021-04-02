@@ -39,7 +39,7 @@ Shader "MyUnityShaders/Brightness" {
 			fixed4 frag(v2f i) : SV_Target {
 				fixed4 renderTex = tex2D(_MainTex, i.uv);  
 				  
-				//亮度
+				// Apply brightness
 				fixed3 finalColor = renderTex.rgb * _Brightness;
 				
 				// Apply saturation

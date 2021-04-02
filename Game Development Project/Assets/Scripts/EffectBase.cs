@@ -1,66 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-[ExecuteInEditMode]
-[RequireComponent(typeof(Camera))]
-public class effectBase : MonoBehaviour
+namespace Assets.Scripts
 {
-
-    protected void CheckResources()
+    [ExecuteInEditMode]
+    //[RequireComponent(typeof(Camera))]
+    public class EffectBase : MonoBehaviour
     {
-        bool isSupported = CheckSupport();
-
-        if (isSupported == false)
+        // Called when need to create the material used by this effect
+        protected Material CheckShaderAndCreateMaterial(Shader shader, Material material)
         {
-            NotSupported();
-        }
-    }
-
-    protected bool CheckSupport()
-    {
-        if (SystemInfo.supportsImageEffects == false)
-        {
-            Debug.LogWarning("This platform does not support image effects or render textures.");
-            return false;
-        }
-
-        return true;
-    }
-
-    // Called when the platform doesn't support this effect
-    protected void NotSupported()
-    {
-        enabled = false;
-    }
-
-    protected void Start()
-    {
-        CheckResources();
-    }
-
-    // Called when need to create the material used by this effect
-    protected Material CheckShaderAndCreateMaterial(Shader shader, Material material)
-    {
-        if (shader == null)
-        {
-            return null;
-        }
-
-        if (shader.isSupported && material && material.shader == shader)
-            return material;
-
-        if (!shader.isSupported)
-        {
-            return null;
-        }
-        else
-        {
-            material = new Material(shader);
-            material.hideFlags = HideFlags.DontSave;
-            if (material)
-                return material;
-            else
+            if (shader == null)
+            {
                 return null;
+            }
+
+            switch (shader.isSupported)
+            {
+                case true when material && material.shader == shader:
+                    return material;
+                case false:
+                    return null;
+                default:
+                    material = new Material(shader);
+                    material.hideFlags = HideFlags.DontSave;
+                    return material ? material : null;
+            }
         }
     }
 }

@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 
-public class Brightness : effectBase
+namespace Assets.Scripts
 {
-
-    public Shader briSatConShader;
-    private Material briSatConMaterial;
-    public Material material
+    public class Brightness : EffectBase
     {
-        get
-        {
-            briSatConMaterial = CheckShaderAndCreateMaterial(briSatConShader, briSatConMaterial);
-            return briSatConMaterial;
-        }
-    }
 
-    [Range(0.0f, 2.0f)]
-    public float brightness = 1.0f;
-
-    void OnRenderImage(RenderTexture src, RenderTexture dest)
-    {
-        if (material != null)
+        public Shader BrightnessShader;
+        private Material _brightnessMaterial;
+        public Material Material
         {
-            material.SetFloat("_Brightness", brightness);
-            Graphics.Blit(src, dest, material);
+            get
+            {
+                _brightnessMaterial = CheckShaderAndCreateMaterial(BrightnessShader, _brightnessMaterial);
+                return _brightnessMaterial;
+            }
         }
-        else
+
+        [Range(0.0f, 2.0f)]
+        public float BrightnessAmount = 1.0f;
+
+        void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
-            Graphics.Blit(src, dest);
+            if (Material != null)
+            {
+                Material.SetFloat("_Brightness", BrightnessAmount);
+                Graphics.Blit(src, dest, Material);
+            }
+            else
+            {
+                Graphics.Blit(src, dest);
+            }
         }
     }
 }

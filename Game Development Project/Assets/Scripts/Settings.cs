@@ -14,7 +14,6 @@ namespace Assets.Scripts
         public Brightness Brightness;
         public Toggle FullscreenToggle;
         public Dropdown ResolutionsDropdown;
-
         public AudioMixer AudioMixer;
 
         private Resolution[] _resolutions;
@@ -51,8 +50,8 @@ namespace Assets.Scripts
             _resolutions = Screen.resolutions;
             ResolutionsDropdown.ClearOptions();
 
-            Resolution currentResolution = new Resolution();
-            List<string> dropdownOptions = new List<string>();
+            var currentResolution = new Resolution();
+            var dropdownOptions = new List<string>();
             foreach (var resolution in _resolutions)
             {
                 dropdownOptions.Add($"{resolution.width} x {resolution.height}");
@@ -93,7 +92,7 @@ namespace Assets.Scripts
         {
             PlayerPrefs.SetFloat("Brightness", BrightnessSlider.value);
 
-            Brightness.brightness = BrightnessSetting;
+            Brightness.BrightnessAmount = BrightnessSetting;
         }
 
         public void SetFullscreenSetting()
