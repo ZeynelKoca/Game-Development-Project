@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
+namespace Assets.Scripts
 {
-    public void StartGame()
+    public class MainMenuController : MonoBehaviour
     {
-        SceneManager.LoadScene("SampleScene");
-    }
+        public void StartGame()
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
 
-    public void ExitGame()
-    {
-        Application.Quit();
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }

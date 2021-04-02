@@ -1,31 +1,27 @@
-﻿using Assets.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace Assets.Scripts
 {
-    private AudioSource _backgroundAudio;
-
-    void Awake()
+    public class AudioManager : MonoBehaviour
     {
-        DontDestroyOnLoad(this);
-    }
+        private AudioSource _backgroundAudio;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _backgroundAudio = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (PauseMenu.GamePausedState)
+        void Awake()
         {
-            _backgroundAudio.volume = Settings.VolumeSetting / 3;
+            DontDestroyOnLoad(this);
         }
-        else
+
+        // Start is called before the first frame update
+        void Start()
         {
-            _backgroundAudio.volume = Settings.VolumeSetting;
+            _backgroundAudio = GetComponent<AudioSource>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // Decrease the audio volume when the game is paused.
+            _backgroundAudio.volume = PauseMenu.GamePausedState ? 0.3f : 1f;
         }
     }
 }

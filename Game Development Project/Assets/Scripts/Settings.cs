@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace Assets.Scripts
@@ -10,14 +11,17 @@ namespace Assets.Scripts
         public GameObject SettingsPanel;
         public Slider VolumeSlider;
         public Slider BrightnessSlider;
+        public Brightness Brightness;
         public Toggle FullscreenToggle;
         public Dropdown ResolutionsDropdown;
 
+        public AudioMixer AudioMixer;
+
         private Resolution[] _resolutions;
 
-        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", 0.8f);
+        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -20f);
 
-        public static float BrightnessSetting => PlayerPrefs.GetFloat("Brightness", 0.9f);
+        public static float BrightnessSetting => PlayerPrefs.GetFloat("Brightness", 1f);
 
         public static bool FullscreenSetting => PlayerPrefs.GetInt("Fullscreen", 1) == 1;
 
@@ -80,16 +84,22 @@ namespace Assets.Scripts
         public void SetVolumeSetting()
         {
             PlayerPrefs.SetFloat("SoundVolume", VolumeSlider.value);
+
+            AudioMixer.SetFloat("MainVolume", VolumeSetting);
+            VolumeSlider.value = VolumeSetting;
         }
 
         public void SetBrightnessSetting()
         {
             PlayerPrefs.SetFloat("Brightness", BrightnessSlider.value);
+
+            Brightness.brightness = BrightnessSetting;
         }
 
         public void SetFullscreenSetting()
         {
             PlayerPrefs.SetInt("Fullscreen", FullscreenToggle.isOn ? 1 : 0);
+
             Screen.fullScreen = FullscreenSetting;
         }
 
