@@ -4,11 +4,22 @@ namespace Assets.Scripts
 {
     public class AudioManager : MonoBehaviour
     {
+        private static AudioManager _instance;
+
         private AudioSource _backgroundAudio;
 
         void Awake()
         {
-            DontDestroyOnLoad(this);
+            // Ensures that only one instance is made of this gameObject.
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
         // Start is called before the first frame update
