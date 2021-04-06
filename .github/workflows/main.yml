@@ -1,0 +1,34 @@
+name: Windows build pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - development
+      
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  
+jobs:
+  windows_build:
+    name: Standalone Windows Build Pipeline
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2.3.4
+      with:
+          fetch-depth: 0
+          lfs: true
+    
+    - name: Unity - Builder
+      uses: game-ci/unity-builder@v2.0-alpha-6
+      with:
+        targetPlatform: StandaloneWindows
+        projectPath: 'Game Development Project'
+        
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build
+        
