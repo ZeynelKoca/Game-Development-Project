@@ -46,7 +46,10 @@ public class Trigger : MonoBehaviour
             for (int i = 0; i < numberOfChildren; i++)
             {
                 GameObject child = Npc.Object.transform.GetChild(i).gameObject;
-                child.GetComponent<Renderer>().material.color = Color.yellow;
+                if(child.GetComponent<Renderer>() != null)
+                {
+                    child.GetComponent<Renderer>().material.color = Color.yellow;
+                }
                 MainCamera.enabled = false;
                 Npc.Camera.enabled = true;
                 _gamePaused = true;
