@@ -19,7 +19,7 @@ namespace Assets.Scripts
         /// <summary>
         /// Gets the player preference for the volume setting.
         /// </summary>
-        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -30f);
+        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -25f);
 
         /// <summary>
         /// Gets the player preference for the fullscreen setting.
