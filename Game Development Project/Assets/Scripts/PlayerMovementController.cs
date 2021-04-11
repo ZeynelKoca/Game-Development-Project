@@ -2,6 +2,8 @@
 
 public class PlayerMovementController : MonoBehaviour
 {
+    public Animator Animator;
+
     public Transform Camera;
     public float GravityForce = 14f;
     public float MovementSpeed = 10f;
@@ -22,6 +24,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         HandleGravity();
         HandleMovement();
+        HandleAnimation();
     }
 
     /// <summary>
@@ -64,5 +67,13 @@ public class PlayerMovementController : MonoBehaviour
         _verticalVelocity -= GravityForce * Time.deltaTime;
         var gravityMovement = new Vector3(0f, _verticalVelocity, 0f);
         _characterController.Move(gravityMovement * Time.deltaTime);
+    }
+
+    /// <summary>
+    /// Plays the right animation according to the current player movement state.
+    /// </summary>
+    private void HandleAnimation()
+    {
+        Animator.SetBool("IsWalking", Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0);
     }
 }
