@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Npc;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
@@ -40,7 +41,17 @@ namespace Assets.Scripts
         {
             PauseMenuUI.SetActive(isGamePaused);
             // Freezes the game time according to the paused state.
-            Time.timeScale = isGamePaused ? 0f : 1f;
+            if (isGamePaused)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                if (!IntractableObject.IsDialogShowing)
+                {
+                    Time.timeScale = 1f;
+                }
+            }
             GamePausedState = isGamePaused;
 
             Cursor.visible = isGamePaused;
@@ -78,6 +89,8 @@ namespace Assets.Scripts
         public void NavigateMainMenu()
         {
             SetPauseState(false);
+
+            IntractableObject.IsDialogShowing = false;
             // Game is not in paused state when in the main menu, but you still want to be able to use the Cursor.
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
