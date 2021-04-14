@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Npc.FiniteStateMachine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Npc
@@ -6,17 +7,29 @@ namespace Assets.Scripts.Npc
     public class NpcTrigger : MonoBehaviour
     {
         public NpcPatrol NpcPatrol;
-        public IntractableObject Npc;
+        public InteractableObject Npc;
         public Text Text;
-        private GameObject _player;
-        private bool _gamePaused;
+        public GameObject ExclamationMark;
+
         private bool _triggerActive;
+
+        #region States
+
+        public INpcState CurrentNpcState;
+        public NpcIdleState NpcIdleState;
+        public NpcInteractedState NpcInteractedState;
+        public NpcCompletedState NpcCompletedState;
+
+        #endregion
+
+        public bool GamePaused { get; set; }
+        public bool IsTriggerActive => _triggerActive;
 
         private void Start()
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
+            InitStates();
             Npc.Camera.enabled = false;
-            _gamePaused = false;
+            GamePaused = false;
             _triggerActive = false;
         }
 
@@ -38,43 +51,40 @@ namespace Assets.Scripts.Npc
 
         public void Update()
         {
-            if (_triggerActive && !_gamePaused)
+            if (NpcCompletedState.Completed)
             {
-                Text.text = "Press E to interact";
-                Text.enabled = true;
-
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Text.enabled = true;
-                    _gamePaused = true;
-                    Npc.Camera.enabled = true;
-                    _player.transform.position = Npc.Object.transform.position + Npc.PlayerPosition;
-                    NpcPatrol.FaceDirection(_player.transform.position);
-                    Npc.InitDialog();
-                    Time.timeScale = 0f;
-                }
+                ExclamationMark.SetActive(false);
             }
-
-            if (_gamePaused && Input.GetKeyDown(KeyCode.E))
-            {
-                if (!Npc.DialogDone)
-                {
-                    Npc.Talk(Text);
-                }
-                else
-                {
-                    IntractableObject.IsDialogShowing = false;
-                    Npc.Camera.enabled = false;
-                    Text.enabled = false;
-                    _gamePaused = false;
-                    Time.timeScale = 1f;
-                }
-            }
-
             if (!_triggerActive)
             {
                 Text.enabled = false;
             }
+            
+            // Execute the current state action and store the upcoming (transition) state to be called in the next Update loop.
+            CurrentNpcState = CurrentNpcState.ExecuteState();
+        }
+
+        /// <summary>
+        /// Initializes the npc states and sets the initial state of the npc.
+        /// </summary>
+        private void InitStates()
+        {
+            NpcIdleState = new NpcIdleState(this);
+            NpcInteractedState = new NpcInteractedState(this);
+            NpcCompletedState = new NpcCompletedState(this);
+
+            // Start the npc off with the idle state.
+            CurrentNpcState = NpcIdleState;
+        }
+
+        /// <summary>
+        /// Calculates the new player position according to the location
+        /// of the npc and the set player position offset.
+        /// </summary>
+        /// <returns></returns>
+        public Vector3 CalculateNewPlayerPosition()
+        {
+            return Npc.Object.transform.position + Npc.PlayerPositionOffset;
         }
     }
 }
