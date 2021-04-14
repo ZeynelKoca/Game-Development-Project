@@ -47,7 +47,7 @@ namespace Assets.Scripts
             }
             else
             {
-                if (!IntractableObject.IsDialogShowing)
+                if (!InteractableObject.IsDialogShowing)
                 {
                     Time.timeScale = 1f;
                 }
@@ -90,7 +90,7 @@ namespace Assets.Scripts
         {
             SetPauseState(false);
 
-            IntractableObject.IsDialogShowing = false;
+            InteractableObject.IsDialogShowing = false;
             // Game is not in paused state when in the main menu, but you still want to be able to use the Cursor.
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

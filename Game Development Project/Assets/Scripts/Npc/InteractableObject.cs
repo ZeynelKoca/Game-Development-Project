@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Npc
 {
-    public class IntractableObject : MonoBehaviour
+    public class InteractableObject : MonoBehaviour
     {
         public static bool IsDialogShowing;
 
