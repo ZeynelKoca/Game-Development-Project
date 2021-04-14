@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Npc.States
+﻿namespace Assets.Scripts.Npc.FiniteStateMachine
 {
     public interface INpcState
     {
