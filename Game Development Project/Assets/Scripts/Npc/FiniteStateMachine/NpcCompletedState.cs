@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Managers;
+using UnityEngine;
 
 namespace Assets.Scripts.Npc.FiniteStateMachine
 {
     public class NpcCompletedState : INpcState
     {
         private readonly NpcTrigger _npcTrigger;
-
-        public bool Completed { get; private set; }
 
         public NpcCompletedState(NpcTrigger npcTrigger)
         {
@@ -15,26 +14,39 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
-            InitTriggerData();
+            // TODO: Set next NPC (InteractableObject.Interactable) to True.
+
+            _npcTrigger.ExclamationMark.SetActive(false);
+            AssignAchievement();
+
             return _npcTrigger.NpcCompletedState;
         }
 
-        /// <summary>
-        /// Initializes the proper variables for the game before executing
-        /// the actual state's action.
-        /// </summary>
-        private void InitTriggerData()
+        private void AssignAchievement()
         {
-            // Change this private boolean check into a check for player achievements.
-            if (!Completed)
+            switch (_npcTrigger.Npc.NpcType)
             {
-                InteractableObject.IsDialogShowing = false;
-                _npcTrigger.Npc.Camera.enabled = false;
-                _npcTrigger.Text.enabled = false;
-                _npcTrigger.GamePaused = false;
-                Time.timeScale = 1f;
-                Completed = true;
+                case NpcType.Panda:
+                    if (!AchievementsManager.PandaAchieved)
+                    {
+                        AchievementsManager.PandaAchieved = true;
+                        RestoreGameState();
+                    }
+                    break;
             }
+        }
+
+        /// <summary>
+        /// Initializes the proper world variables before
+        /// resuming the game.
+        /// </summary>
+        private void RestoreGameState()
+        {
+            InteractableObject.IsDialogShowing = false;
+            _npcTrigger.Npc.Camera.enabled = false;
+            _npcTrigger.Text.enabled = false;
+            _npcTrigger.GamePaused = false;
+            Time.timeScale = 1f;
         }
     }
 }

@@ -13,15 +13,9 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
-            if (_npcTrigger.IsTriggerActive && !_npcTrigger.GamePaused)
+            if (_npcTrigger.Npc.Interactable)
             {
-                _npcTrigger.Text.text = "Press E to interact";
-                _npcTrigger.Text.enabled = true;
-
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    return _npcTrigger.NpcInteractedState;
-                }
+                return _npcTrigger.NpcInteractableState;
             }
 
             return _npcTrigger.NpcIdleState;

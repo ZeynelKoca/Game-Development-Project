@@ -11,33 +11,32 @@ namespace Assets.Scripts.Npc
         public Text Text;
         public GameObject ExclamationMark;
 
-        private bool _triggerActive;
-
         #region States
 
         public INpcState CurrentNpcState;
         public NpcIdleState NpcIdleState;
+        public NpcInteractableState NpcInteractableState;
         public NpcInteractedState NpcInteractedState;
         public NpcCompletedState NpcCompletedState;
 
         #endregion
 
         public bool GamePaused { get; set; }
-        public bool IsTriggerActive => _triggerActive;
+        public bool IsTriggerActive { get; private set; }
 
         private void Start()
         {
             InitStates();
             Npc.Camera.enabled = false;
             GamePaused = false;
-            _triggerActive = false;
+            IsTriggerActive = false;
         }
 
         public void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                _triggerActive = true;
+                IsTriggerActive = true;
             }
         }
 
@@ -45,21 +44,17 @@ namespace Assets.Scripts.Npc
         {
             if (other.CompareTag("Player"))
             {
-                _triggerActive = false;
+                IsTriggerActive = false;
             }
         }
 
         public void Update()
         {
-            if (NpcCompletedState.Completed)
-            {
-                ExclamationMark.SetActive(false);
-            }
-            if (!_triggerActive)
+            if (!IsTriggerActive)
             {
                 Text.enabled = false;
             }
-            
+
             // Execute the current state action and store the upcoming (transition) state to be called in the next Update loop.
             CurrentNpcState = CurrentNpcState.ExecuteState();
         }
@@ -70,6 +65,7 @@ namespace Assets.Scripts.Npc
         private void InitStates()
         {
             NpcIdleState = new NpcIdleState(this);
+            NpcInteractableState = new NpcInteractableState(this);
             NpcInteractedState = new NpcInteractedState(this);
             NpcCompletedState = new NpcCompletedState(this);
 

@@ -60,7 +60,7 @@ MonoBehaviour:
   NpcPatrol: {fileID: 353288208}
   Npc: {fileID: 353288207}
   Text: {fileID: 8184936167903959399}
-  ExclamationMark: {fileID: 789642909693729404}
+  ExclamationMark: {fileID: 397657980197477235}
 --- !u!1 &25812632183041601
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1473775304450677039
 Transform:
   m_ObjectHideFlags: 0
@@ -118,8 +118,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397657980197477235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.63, z: -0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.88, z: -0.1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 125732068520034502}
   m_Father: {fileID: 1257763369267553784}
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 353288208}
   m_Layer: 0
   m_Name: PandaNPC
-  m_TagString: Untagged
+  m_TagString: PandaNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -463,9 +463,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c099235e92ebce24ba70213dc1e45e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NpcType: 0
+  Interactable: 0
   Camera: {fileID: 432840956475870472}
-  PlayerPositionOffset: {x: -4, y: 1.4, z: 0}
   Object: {fileID: 6386043406889548467}
+  PlayerPositionOffset: {x: -4, y: 1.4, z: 0}
   DialogText:
   - Hello
   - This is an example text
@@ -703,12 +705,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a210470febe864da40ba64b663639b, type: 3}
---- !u!1 &789642909693729404 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 82a210470febe864da40ba64b663639b,
-    type: 3}
-  m_PrefabInstance: {fileID: 446993099483146029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &125732068520034502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82a210470febe864da40ba64b663639b,
