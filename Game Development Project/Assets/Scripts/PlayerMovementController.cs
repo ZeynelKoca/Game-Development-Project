@@ -78,5 +78,15 @@ namespace Assets.Scripts
         {
             Animator.SetBool("IsWalking", Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0);
         }
+
+        /// <summary>
+        /// Rotates the x-axis of the player in order to face the specified target position.
+        /// </summary>
+        /// <param name="targetPosition">The target position.</param>
+        public void FaceDirection(Vector3 targetPosition)
+        {
+            var forward = new Vector3(targetPosition.x - transform.position.x, 0f, 0f);
+            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+        }
     }
 }
