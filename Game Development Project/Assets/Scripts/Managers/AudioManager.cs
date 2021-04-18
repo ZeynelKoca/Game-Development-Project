@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Managers
 {
     public class AudioManager : MonoBehaviour
     {
@@ -32,7 +32,7 @@ namespace Assets.Scripts
         void Update()
         {
             // Decrease the audio volume when the game is paused.
-            _backgroundAudio.volume = PauseMenu.GamePausedState ? 0.3f : 1f;
+            _backgroundAudio.volume = PauseMenuController.GamePausedState ? 0.3f : 1f;
         }
     }
 }

@@ -7,14 +7,29 @@ namespace Assets.Scripts.Npc
     {
         public static bool IsDialogShowing;
 
+        public NpcType NpcType;
         public Camera Camera;
         public Vector3 PlayerPositionOffset;
-        public GameObject Object;
         public string[] DialogText;
 
         private int _currentDialogIndex;
         private bool _dialogInitialized;
 
+        public GameObject Object
+        {
+            get
+            {
+                switch (NpcType)
+                {
+                    case (NpcType.Panda):
+                        return GameObject.FindGameObjectWithTag("PandaNPC");
+                    default:
+                        return null;
+                }
+            }
+        }
+
+        public bool Interactable { get; set; }
         public bool DialogDone { get; private set; }
 
         /// <summary>

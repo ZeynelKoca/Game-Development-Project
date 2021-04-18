@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
     public class PlayerMovementController : MonoBehaviour
     {
+        const int MIN_IDLE_TIME = 4;
+        const int MAX_IDLE_TIME = 7;
+
         public Animator Animator;
 
         public Transform Camera;
@@ -14,6 +18,8 @@ namespace Assets.Scripts
         private CharacterController _characterController;
         private float _currentTurnVelocity;
         private float _verticalVelocity;
+        private float _idleTimeDecimal;
+        private int _idleTime;
 
         // Start is called before the first frame update
         void Start()
@@ -76,7 +82,55 @@ namespace Assets.Scripts
         /// </summary>
         private void HandleAnimation()
         {
-            Animator.SetBool("IsWalking", Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0);
+            var hasMovementInput = Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0;
+            Animator.SetBool("IsWalking", hasMovementInput);
+            if (!hasMovementInput)
+            {
+                // Player in Idle state
+                DoIdleAnimation();
+            }
+        }
+
+        /// <summary>
+        /// Handles the idle animation by comparing the amount of
+        /// time being idled and starting the animation for looking around.
+        /// </summary>
+        private void DoIdleAnimation()
+        {
+            _idleTimeDecimal += 1 * Time.deltaTime;
+            _idleTime = Mathf.RoundToInt(_idleTimeDecimal);
+
+            if (_idleTime > Random.Range(MIN_IDLE_TIME, MAX_IDLE_TIME))
+            {
+                StartCoroutine(StartLookAroundAnimation());
+                return;
+            }
+
+            Animator.SetBool("IsLookingAround", false);
+        }
+
+        /// <summary>
+        /// Starts the animation for the player to look around.
+        /// </summary>
+        private IEnumerator StartLookAroundAnimation()
+        {
+            Animator.SetBool("IsLookingAround", true);
+            yield return new WaitForSeconds(.2f);
+
+            // Reset wait timers and set animation state back to Idle.
+            Animator.SetBool("IsLookingAround", false);
+            _idleTime = 0;
+            _idleTimeDecimal = 0;
+        }
+
+        /// <summary>
+        /// Rotates the x-axis of the player in order to face the specified target position.
+        /// </summary>
+        /// <param name="targetPosition">The target position.</param>
+        public void FaceDirection(Vector3 targetPosition)
+        {
+            var forward = new Vector3(targetPosition.x - transform.position.x, 0f, 0f);
+            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
         }
     }
 }
