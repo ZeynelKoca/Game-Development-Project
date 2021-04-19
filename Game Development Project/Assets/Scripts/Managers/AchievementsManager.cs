@@ -1,23 +1,35 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     /// <summary>
     /// Manages the achievements completed player-achievements
     /// </summary>
-    /// <remarks>Achievement sprite sizes have to be <c>256x256</c></remarks>
     public class AchievementsManager : MonoBehaviour
     {
-        private static AchievementsManager _instance;
+        public static AchievementsManager Instance;
 
-        // Panda achievement
-        public Sprite PandaSprite;
-        public static bool PandaAchieved
+        #region PandaAchievement
+
+        public event Action OnPandaAchievementChanged;
+        protected virtual void PandaAchievementChanged()
+        {
+            OnPandaAchievementChanged?.Invoke();
+        }
+
+        public bool PandaAchieved
         {
             get => PlayerPrefs.GetInt("PandaAchieved", 0) == 1;
-            set => PlayerPrefs.SetInt("PandaAchieved", value ? 1 : 0);
+            set
+            {
+                PlayerPrefs.SetInt("PandaAchieved", value ? 1 : 0);
+                PandaAchievementChanged();
+            }
         }
-        
+
+        #endregion
+
         void Awake()
         {
             CreateSingleton();
@@ -26,13 +38,7 @@ namespace Assets.Scripts.Managers
         // Start is called before the first frame update
         void Start()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            ResetAllAchievements();
         }
 
         /// <summary>
@@ -40,13 +46,13 @@ namespace Assets.Scripts.Managers
         /// </summary>
         private void CreateSingleton()
         {
-            if (_instance != null && _instance != this)
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
             }
             else
             {
-                _instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
         }

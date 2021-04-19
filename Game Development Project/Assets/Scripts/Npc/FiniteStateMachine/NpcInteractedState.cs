@@ -19,7 +19,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             InitTriggerData();
 
-            if (_npcTrigger.GamePaused && Input.GetKeyDown(KeyCode.E))
+            if (_npcTrigger.GamePaused && Input.anyKeyDown)
             {
                 _npcTrigger.Npc.Talk(_npcTrigger.Text);
                 

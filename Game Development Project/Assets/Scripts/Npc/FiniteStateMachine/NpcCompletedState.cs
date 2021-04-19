@@ -27,9 +27,9 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
             switch (_npcTrigger.Npc.NpcType)
             {
                 case NpcType.Panda:
-                    if (!AchievementsManager.PandaAchieved)
+                    if (!AchievementsManager.Instance.PandaAchieved)
                     {
-                        AchievementsManager.PandaAchieved = true;
+                        AchievementsManager.Instance.PandaAchieved = true;
                         RestoreGameState();
                     }
                     break;

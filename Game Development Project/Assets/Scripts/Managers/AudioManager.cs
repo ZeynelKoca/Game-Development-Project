@@ -4,20 +4,20 @@ namespace Assets.Scripts.Managers
 {
     public class AudioManager : MonoBehaviour
     {
-        private static AudioManager _instance;
+        public static AudioManager Instance;
 
         private AudioSource _backgroundAudio;
 
         void Awake()
         {
             // Ensures that only one instance is made of this gameObject.
-            if (_instance != null && _instance != this)
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
             }
             else
             {
-                _instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
         }
