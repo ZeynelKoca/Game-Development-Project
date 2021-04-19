@@ -26,7 +26,7 @@ namespace Assets.Scripts.Managers
         // Start is called before the first frame update
         void Start()
         {
-            ResetAllAchievements();
+
         }
 
         // Update is called once per frame
