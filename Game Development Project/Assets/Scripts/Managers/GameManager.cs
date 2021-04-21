@@ -6,7 +6,7 @@ namespace Assets.Scripts.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        private static GameManager _instance;
+        public static GameManager Instance;
 
         void Awake()
         {
@@ -33,13 +33,13 @@ namespace Assets.Scripts.Managers
         /// </summary>
         private void CreateSingleton()
         {
-            if (_instance != null && _instance != this)
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
             }
             else
             {
-                _instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
         }
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Managers
         /// </summary>
         private void InitNpcs()
         {
-            if (!AchievementsManager.PandaAchieved)
+            if (!AchievementsManager.Instance.PandaAchieved)
             {
                 var panda = GameObject.FindGameObjectWithTag("PandaNPC");
                 ActivateNpc(panda);

@@ -90,6 +90,7 @@ namespace Assets.Scripts
         public void ShowSettingsPanel()
         {
             SettingsPanel.SetActive(true);
+            SettingsPanel.transform.parent.transform.SetAsLastSibling();
         }
 
         /// <summary>
