@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SLUIT
+  m_Text: QUIT
 --- !u!222 &60248200
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1510,6 +1510,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 660508655321580981, guid: 993f7de673c304641a23b9441eceab70,
+        type: 3}
+      propertyPath: m_Text
+      value: ACHIEVEMENTS
+      objectReference: {fileID: 0}
+    - target: {fileID: 660508655321580981, guid: 993f7de673c304641a23b9441eceab70,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993f7de673c304641a23b9441eceab70, type: 3}
 --- !u!1001 &3970777450098644786
@@ -1528,6 +1538,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571896986968277968, guid: c082e44d94241614a9750c487a61cbcc,
+        type: 3}
+      propertyPath: m_Text
+      value: SETTINGS
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571896986968277968, guid: c082e44d94241614a9750c487a61cbcc,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 3970777450094765101, guid: c082e44d94241614a9750c487a61cbcc,
         type: 3}
@@ -1629,6 +1649,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -220.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684081868688985223, guid: c082e44d94241614a9750c487a61cbcc,
+        type: 3}
+      propertyPath: m_Text
+      value: FULLSCREEN
       objectReference: {fileID: 0}
     - target: {fileID: 8881729246691678988, guid: c082e44d94241614a9750c487a61cbcc,
         type: 3}
