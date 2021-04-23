@@ -16,16 +16,66 @@ namespace Assets.Scripts.Managers
         // Start is called before the first frame update
         void Start()
         {
-            
+            SubscribeToExternalEvents();
         }
 
-        // Update is called once per frame
-        void Update()
+        /// <summary>
+        /// Subscribes to external events.
+        /// </summary>
+        private void SubscribeToExternalEvents()
         {
-            if (SceneManager.GetActiveScene().name == "SampleScene")
+            SceneManager.activeSceneChanged += SceneManagerOnActiveSceneChanged;
+        }
+
+        private void SceneManagerOnActiveSceneChanged(Scene arg0, Scene scene)
+        {
+            if (scene.name == "SampleScene")
             {
                 InitNpcs();
+                InitMainCharacterTransform();
             }
+        }
+
+        /// <summary>
+        /// Checks whether the Main Character's transform values
+        /// were saved and if so, initializes it with these saved values.
+        /// </summary>
+        private void InitMainCharacterTransform()
+        {
+            if (SceneChangeSaveData.MainCharacterPosition != null)
+            {
+                InitMainCharacterPosition();
+            }
+            if (SceneChangeSaveData.MainCharacterRotation != null)
+            {
+                InitMainCharacterRotation();
+            }
+        }
+
+        /// <summary>
+        /// Initializes the Main Character's position according to
+        /// the saved position values in <see cref="SceneChangeSaveData"/>.
+        /// </summary>
+        private void InitMainCharacterPosition()
+        {
+            var savedPosition = SceneChangeSaveData.MainCharacterPosition;
+            System.Diagnostics.Debug.Assert(savedPosition != null);
+            var playerGameObject = GameObject.FindGameObjectWithTag("Player");
+            playerGameObject.transform.position = (Vector3)savedPosition;
+            SceneChangeSaveData.MainCharacterPosition = null;
+        }
+
+        /// <summary>
+        /// Initializes the Main Character's rotation according to
+        /// the saved rotation values in <see cref="SceneChangeSaveData"/>.
+        /// </summary>
+        private void InitMainCharacterRotation()
+        {
+            var savedRotation = SceneChangeSaveData.MainCharacterRotation;
+            System.Diagnostics.Debug.Assert(savedRotation != null);
+            var playerGameObject = GameObject.FindGameObjectWithTag("Player");
+            playerGameObject.transform.rotation = (Quaternion)savedRotation;
+            SceneChangeSaveData.MainCharacterRotation = null;
         }
 
         /// <summary>

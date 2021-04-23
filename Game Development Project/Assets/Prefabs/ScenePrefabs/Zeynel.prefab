@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: MainMenu
   NpcPatrol: {fileID: 353288208}
   Npc: {fileID: 353288207}
   Text: {fileID: 8184936167903959399}
@@ -1135,6 +1138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
   NpcPatrol: {fileID: 1506049282758569061}
   Npc: {fileID: 1752018570644993927}
   Text: {fileID: 6596436973152502730}
@@ -1576,6 +1582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
   NpcPatrol: {fileID: 3263568770868063835}
   Npc: {fileID: 2606381235100326405}
   Text: {fileID: 1307783725630006854}
@@ -2106,6 +2115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
   NpcPatrol: {fileID: 5466487249348352594}
   Npc: {fileID: 122119697566120028}
   Text: {fileID: 2431633343405191356}
@@ -2925,6 +2937,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
   NpcPatrol: {fileID: 2484459018491659479}
   Npc: {fileID: 1155725831425088703}
   Text: {fileID: 5244514702984137125}
