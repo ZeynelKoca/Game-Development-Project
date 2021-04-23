@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameScene:
-    m_SceneAsset: {fileID: 0}
-    m_SceneName: MainMenu
+    _sceneAsset: {fileID: 102900000, guid: 11d3683edfcb1f54eb17a277db4bd6a5, type: 3}
+    _sceneName: Scenes/FlagsMinigame
   NpcPatrol: {fileID: 353288208}
   Npc: {fileID: 353288207}
   Text: {fileID: 8184936167903959399}
@@ -853,8 +853,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -362.4, y: -141.1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -314, y: -140}
+  m_SizeDelta: {x: 517.86, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7360296290913438921
 CanvasRenderer:
@@ -896,7 +896,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: New Text New Text New Text New Text
 --- !u!114 &8354562611309553629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
+  m_HorizontalFit: 0
   m_VerticalFit: 2
 --- !u!1 &1828651233912362574
 GameObject:
@@ -1139,8 +1139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameScene:
-    m_SceneAsset: {fileID: 0}
-    m_SceneName: 
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 1506049282758569061}
   Npc: {fileID: 1752018570644993927}
   Text: {fileID: 6596436973152502730}
@@ -1583,8 +1583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameScene:
-    m_SceneAsset: {fileID: 0}
-    m_SceneName: 
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 3263568770868063835}
   Npc: {fileID: 2606381235100326405}
   Text: {fileID: 1307783725630006854}
@@ -2116,8 +2116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameScene:
-    m_SceneAsset: {fileID: 0}
-    m_SceneName: 
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 5466487249348352594}
   Npc: {fileID: 122119697566120028}
   Text: {fileID: 2431633343405191356}
@@ -2307,10 +2307,12 @@ MonoBehaviour:
   Camera: {fileID: 432840956475870472}
   PlayerPositionOffset: {x: -4, y: -0.7, z: 0}
   DialogText:
-  - Hello
-  - This is an example text
-  - Thank you!
-  - Bye bye
+  - Hmmm bamboo cake, bamboo pudding, bamboo--
+  - Oh? You are not bamboo, unless you have some in your pockets?
+  - Oh.. That's unfortunate. Luckily I have plenty bamboo at home.
+  - Have I seen a recipe page around here, you ask?
+  - Now that you mention it, I have!
+  - But before that, maybe you could help me out with something first?
 --- !u!114 &353288208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2938,8 +2940,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameScene:
-    m_SceneAsset: {fileID: 0}
-    m_SceneName: 
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 2484459018491659479}
   Npc: {fileID: 1155725831425088703}
   Text: {fileID: 5244514702984137125}
