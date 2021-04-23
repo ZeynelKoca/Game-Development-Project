@@ -40,7 +40,7 @@ public class PlaceDecal : MonoBehaviour
         decal.transform.position = hitInfo.point;
         decal.transform.forward = hitInfo.normal * -1f;
         decal.transform.parent = Flag.transform;
-        decal.transform.position = hitInfo.point + (Camera.main.transform.position - decal.transform.position) *  0.01f;
+        decal.transform.position = hitInfo.point + (Camera.main.transform.position - decal.transform.position) * Flag.transform.childCount/100000;
         decal.transform.SetAsFirstSibling();      
     }
     public void ChangePatternToSquare()
