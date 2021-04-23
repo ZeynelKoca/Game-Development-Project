@@ -19,7 +19,7 @@ namespace Assets.Scripts
         /// <summary>
         /// Gets the player preference for the volume setting.
         /// </summary>
-        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -20f);
+        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -25f);
 
         /// <summary>
         /// Gets the player preference for the fullscreen setting.
@@ -90,6 +90,7 @@ namespace Assets.Scripts
         public void ShowSettingsPanel()
         {
             SettingsPanel.SetActive(true);
+            SettingsPanel.transform.parent.transform.SetAsLastSibling();
         }
 
         /// <summary>
