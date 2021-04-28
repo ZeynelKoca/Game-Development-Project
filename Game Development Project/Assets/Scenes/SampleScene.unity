@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 51729048}
   - component: {fileID: 51729047}
   - component: {fileID: 51729049}
+  - component: {fileID: 51729050}
   m_Layer: 0
   m_Name: Third person camera
   m_TagString: Untagged
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 2
+    m_MaxSpeed: 1.4
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -201,7 +202,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 200
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -229,11 +230,11 @@ MonoBehaviour:
   m_BindingMode: 4
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 9
+  - m_Height: 8
     m_Radius: 8
-  - m_Height: 3
-    m_Radius: 10
-  - m_Height: -2
+  - m_Height: 1.5
+    m_Radius: 11
+  - m_Height: -1
     m_Radius: 8
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
@@ -248,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51729046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5708847, y: 3.47, z: -13.273634}
+  m_LocalPosition: {x: 0.5708847, y: 1.97, z: -14.273634}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1597793293}
@@ -272,7 +273,7 @@ MonoBehaviour:
   m_CollideAgainst:
     serializedVersion: 2
     m_Bits: 1
-  m_IgnoreTag: 
+  m_IgnoreTag: Tree
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -282,11 +283,23 @@ MonoBehaviour:
   m_MinimumOcclusionTime: 0
   m_CameraRadius: 0.1
   m_Strategy: 1
-  m_MaximumEffort: 4
+  m_MaximumEffort: 6
   m_SmoothingTime: 0
   m_Damping: 0
-  m_DampingWhenOccluded: 0
+  m_DampingWhenOccluded: 0.75
   m_OptimalTargetDistance: 0
+--- !u!114 &51729050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51729046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a1d6644010d0543838db984dca6f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &79138189
 GameObject:
   m_ObjectHideFlags: 3
@@ -360,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -10}
+  m_FollowOffset: {x: 0, y: 1.5, z: -11}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -830,7 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -10}
+  m_FollowOffset: {x: 0, y: 1.5, z: -11}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1159,7 +1172,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595733451}
-  m_LocalRotation: {x: 0.12719242, y: 0.000000017066634, z: -0.0000000021885216, w: 0.9918781}
+  m_LocalRotation: {x: 0.049553063, y: -0.0000000042963104, z: 2.1315721e-10, w: 0.9987715}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1233,7 +1246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597793291}
-  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.06771198, y: 0.000000028805216, z: -0.0000000019549449, w: 0.9977049}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1341,7 +1354,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999582052}
-  m_LocalRotation: {x: 0.10917738, y: 0.000000017629906, z: -0.0000000019363622, w: 0.9940223}
+  m_LocalRotation: {x: 0.031425737, y: -0.0000000021497355, z: 6.75904e-11, w: 0.9995061}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1422,7 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -10}
+  m_FollowOffset: {x: 0, y: 1.5, z: -11}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1573,14 +1586,49 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9987715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.04955307
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000034133265
+      value: -0.000000008592621
       objectReference: {fileID: 0}
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000043770436
+      value: 4.2631448e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 5231314860903208806, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
+      propertyPath: field of view
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231314860903208806, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231314861324140656, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
+      propertyPath: CmCam
+      value: 
+      objectReference: {fileID: 51729047}
     - target: {fileID: 5231314861324140657, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
       propertyPath: m_Name
