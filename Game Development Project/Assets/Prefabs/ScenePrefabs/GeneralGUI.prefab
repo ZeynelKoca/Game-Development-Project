@@ -792,7 +792,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RESUME
+  m_Text: HERVAT
 --- !u!1 &8323955704219473693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1077,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: QUIT
+  m_Text: SLUIT
 --- !u!1 &8323955704386564434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 75832808027897075, guid: 993f7de673c304641a23b9441eceab70,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 271.89
+      value: 256.46
       objectReference: {fileID: 0}
     - target: {fileID: 281664052925299874, guid: 993f7de673c304641a23b9441eceab70,
         type: 3}
@@ -1379,6 +1379,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8323955703232455412}
     m_Modifications:
+    - target: {fileID: 1532962207919186456, guid: c082e44d94241614a9750c487a61cbcc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
     - target: {fileID: 3571896986968277968, guid: c082e44d94241614a9750c487a61cbcc,
         type: 3}
       propertyPath: m_Text

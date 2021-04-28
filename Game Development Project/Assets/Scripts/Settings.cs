@@ -10,16 +10,19 @@ namespace Assets.Scripts
     {
         public GameObject SettingsPanel;
         public Slider VolumeSlider;
+        public Slider SensitivitySlider;
         public Toggle FullscreenToggle;
         public Dropdown ResolutionsDropdown;
         public AudioMixer AudioMixer;
+
+        public static event EventHandler OnMouseSensitivityChanged;
 
         private Resolution[] _resolutions;
 
         /// <summary>
         /// Gets the player preference for the volume setting.
         /// </summary>
-        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -25f);
+        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -30f);
 
         /// <summary>
         /// Gets the player preference for the fullscreen setting.
@@ -31,26 +34,37 @@ namespace Assets.Scripts
         /// </summary>
         public static int ResolutionSetting => PlayerPrefs.GetInt("Resolution", -1);
 
+        /// <summary>
+        /// Gets the player preference for the mouse sensitivity setting.
+        /// </summary>
+        public static float MouseSensitivitySetting => PlayerPrefs.GetFloat("MouseSensitivity", 1f);
+
         // Start is called before the first frame update
         void Start()
         {
-            VolumeSlider.value = VolumeSetting;
-            FullscreenToggle.isOn = FullscreenSetting;
-            SetDropdownResolutions();
-
             InitializeGameSettings();
         }
-
 
         /// <summary>
         /// Initializes the game with the currently set player preferences.
         /// </summary>
         private void InitializeGameSettings()
         {
-            Screen.fullScreen = FullscreenSetting;
+            // Fullscreen
+            FullscreenToggle.isOn = FullscreenSetting;
+            SetFullscreenSetting();
 
-            var currentResolution = _resolutions[ResolutionSetting];
-            Screen.SetResolution(currentResolution.width, currentResolution.height, FullscreenSetting);
+            // Resolution
+            SetDropdownResolutions();
+            SetResolutionSetting();
+
+            // Volume
+            VolumeSlider.value = VolumeSetting;
+            SetVolumeSetting();
+
+            // Mouse sensitivity
+            SensitivitySlider.value = MouseSensitivitySetting;
+            SetMouseSensitivitySetting();
         }
 
         /// <summary>
@@ -85,23 +99,6 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Activates the settings panel.
-        /// </summary>
-        public void ShowSettingsPanel()
-        {
-            SettingsPanel.SetActive(true);
-            SettingsPanel.transform.parent.transform.SetAsLastSibling();
-        }
-
-        /// <summary>
-        /// Deactivates the settings panel.
-        /// </summary>
-        public void CloseSettingsPanel()
-        {
-            SettingsPanel.SetActive(false);
-        }
-
-        /// <summary>
         /// Stores the current volume setting as a player preference.
         /// </summary>
         public void SetVolumeSetting()
@@ -118,7 +115,6 @@ namespace Assets.Scripts
         public void SetFullscreenSetting()
         {
             PlayerPrefs.SetInt("Fullscreen", FullscreenToggle.isOn ? 1 : 0);
-
             Screen.fullScreen = FullscreenSetting;
         }
 
@@ -131,6 +127,34 @@ namespace Assets.Scripts
 
             var currentResolution = _resolutions[ResolutionSetting];
             Screen.SetResolution(currentResolution.width, currentResolution.height, FullscreenSetting);
+        }
+
+        /// <summary>
+        /// Sets the current mouse sensitivity setting as a player preference.
+        /// </summary>
+        public void SetMouseSensitivitySetting()
+        {
+            PlayerPrefs.SetFloat("MouseSensitivity", SensitivitySlider.value);
+            SensitivitySlider.value = MouseSensitivitySetting;
+
+            OnMouseSensitivityChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Activates the settings panel.
+        /// </summary>
+        public void ShowSettingsPanel()
+        {
+            SettingsPanel.SetActive(true);
+            SettingsPanel.transform.parent.transform.SetAsLastSibling();
+        }
+
+        /// <summary>
+        /// Deactivates the settings panel.
+        /// </summary>
+        public void CloseSettingsPanel()
+        {
+            SettingsPanel.SetActive(false);
         }
     }
 }
