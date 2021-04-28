@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniGameScene:
-    _sceneAsset: {fileID: 102900000, guid: 11d3683edfcb1f54eb17a277db4bd6a5, type: 3}
-    _sceneName: Scenes/FlagsMinigame
+    _sceneAsset: {fileID: 0}
+    _sceneName: Scenes/MainMenu
   NpcPatrol: {fileID: 353288208}
   Npc: {fileID: 353288207}
   Text: {fileID: 8184936167903959399}
