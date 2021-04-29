@@ -22,7 +22,7 @@ namespace Assets.Scripts
         /// <summary>
         /// Gets the player preference for the volume setting.
         /// </summary>
-        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -30f);
+        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", 0.4f);
 
         /// <summary>
         /// Gets the player preference for the fullscreen setting.
@@ -39,6 +39,11 @@ namespace Assets.Scripts
         /// </summary>
         public static float MouseSensitivitySetting => PlayerPrefs.GetFloat("MouseSensitivity", 1f);
 
+        void Awake()
+        {
+            InitializeSettingsInterface();
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -46,24 +51,27 @@ namespace Assets.Scripts
         }
 
         /// <summary>
+        /// Initializes the UI objects with the currently set player preferences.
+        /// </summary>
+        private void InitializeSettingsInterface()
+        {
+            FullscreenToggle.isOn = FullscreenSetting;
+
+            AudioMixer.SetFloat("MainVolume", Mathf.Log(VolumeSetting) * 20);
+            VolumeSlider.value = VolumeSetting;
+
+            SensitivitySlider.value = MouseSensitivitySetting;
+        }
+
+        /// <summary>
         /// Initializes the game with the currently set player preferences.
         /// </summary>
         private void InitializeGameSettings()
         {
-            // Fullscreen
-            FullscreenToggle.isOn = FullscreenSetting;
             SetFullscreenSetting();
-
-            // Resolution
             SetDropdownResolutions();
             SetResolutionSetting();
-
-            // Volume
-            VolumeSlider.value = VolumeSetting;
             SetVolumeSetting();
-
-            // Mouse sensitivity
-            SensitivitySlider.value = MouseSensitivitySetting;
             SetMouseSensitivitySetting();
         }
 
@@ -104,9 +112,9 @@ namespace Assets.Scripts
         public void SetVolumeSetting()
         {
             PlayerPrefs.SetFloat("SoundVolume", VolumeSlider.value);
-
-            AudioMixer.SetFloat("MainVolume", VolumeSetting);
             VolumeSlider.value = VolumeSetting;
+
+            AudioMixer.SetFloat("MainVolume", Mathf.Log(VolumeSetting) * 20);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace Assets.Scripts.Managers
     {
         public static AudioManager Instance;
 
-        private AudioSource _backgroundAudio;
+        private AudioSource _audioSource;
 
         void Awake()
         {
@@ -25,14 +25,14 @@ namespace Assets.Scripts.Managers
         // Start is called before the first frame update
         void Start()
         {
-            _backgroundAudio = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
         void Update()
         {
             // Decrease the audio volume when the game is paused.
-            _backgroundAudio.volume = PauseMenuController.GamePausedState ? 0.3f : 1f;
+            _audioSource.volume = PauseMenuController.GamePausedState ? 0.5f : 1f;
         }
     }
 }
