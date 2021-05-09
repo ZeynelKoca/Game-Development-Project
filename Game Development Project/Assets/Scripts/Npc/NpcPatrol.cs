@@ -6,7 +6,6 @@ namespace Assets.Scripts.Npc
     {
         public float MovementSpeed;
         public float StartWaitTime;
-        public Animator Animator;
         public Transform CameraTransform;
         public Transform[] PatrolSpots;
 
@@ -51,12 +50,6 @@ namespace Assets.Scripts.Npc
             }
             else
             {
-                // Target spot is reached so start the wait timer and reset walking animation state.
-                if (Animator != null)
-                {
-                    Animator.SetBool("IsWalking", false);
-                }
-
                 _waitTime -= Time.deltaTime;
             }
         }
@@ -77,11 +70,6 @@ namespace Assets.Scripts.Npc
         /// <param name="patrolTarget">The patrol target.</param>
         private void DoNpcTranslation(Vector3 patrolTarget)
         {
-            if (Animator != null)
-            {
-                Animator.SetBool("IsWalking", true);
-            }
-
             var maxDistance = MovementSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, patrolTarget, maxDistance);
 
