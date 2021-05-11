@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51, y: 0}
+  m_AnchoredPosition: {x: 48, y: 0}
   m_SizeDelta: {x: 160, y: 77.29486}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60248199
@@ -1513,12 +1513,12 @@ PrefabInstance:
     - target: {fileID: 660508655321580981, guid: 993f7de673c304641a23b9441eceab70,
         type: 3}
       propertyPath: m_Text
-      value: ACHIEVEMENTS
+      value: PRESTATIES
       objectReference: {fileID: 0}
     - target: {fileID: 660508655321580981, guid: 993f7de673c304641a23b9441eceab70,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 22
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993f7de673c304641a23b9441eceab70, type: 3}

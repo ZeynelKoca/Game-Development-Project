@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -81,7 +82,7 @@ namespace Assets.Scripts
         /// </summary>
         private void SetDropdownResolutions()
         {
-            _resolutions = Screen.resolutions;
+            _resolutions = GetScreenResolutions();
             ResolutionsDropdown.ClearOptions();
 
             var currentResolution = new Resolution();
@@ -89,7 +90,6 @@ namespace Assets.Scripts
             foreach (var resolution in _resolutions)
             {
                 dropdownOptions.Add($"{resolution.width} x {resolution.height}");
-
                 if (resolution.height == Screen.currentResolution.height &&
                     resolution.width == Screen.currentResolution.width)
                 {
@@ -104,6 +104,17 @@ namespace Assets.Scripts
                 ? Array.IndexOf(_resolutions, currentResolution)
                 : ResolutionSetting;
             ResolutionsDropdown.RefreshShownValue();
+        }
+
+        /// <summary>
+        /// Gets all supported resolutions for the user's hardware and removes
+        /// all duplicate values (resulted from different refresh rates).
+        /// </summary>
+        private Resolution[] GetScreenResolutions()
+        {
+            return Screen.resolutions
+                .Select(resolution => new Resolution {width = resolution.width, height = resolution.height}).Distinct()
+                .ToArray();
         }
 
         /// <summary>
