@@ -11,7 +11,7 @@
         Chocolate,
         Egg,
         Lemon,
-        Cream,
+        Banana,
         Flour,
         Sugar
     }
