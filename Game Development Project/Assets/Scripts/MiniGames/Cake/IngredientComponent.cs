@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Cake
+namespace Assets.Scripts.MiniGames.Cake
 {
     /// <summary>
     /// A class that stores an <see cref="Ingredient"/> enum. This class

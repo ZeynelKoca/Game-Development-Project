@@ -9,6 +9,7 @@ namespace Assets.Scripts
         public static bool GamePausedState;
 
         public GameObject PauseMenuUI;
+        public bool LockCursorOnExit;
 
         // Start is called before the first frame update
         void Start()
@@ -54,9 +55,23 @@ namespace Assets.Scripts
             }
             GamePausedState = isGamePaused;
 
-            Cursor.visible = isGamePaused;
-            // Unlocks the cursor according to the paused state in order to navigate the pause menu.
-            Cursor.lockState = isGamePaused ? CursorLockMode.None : CursorLockMode.Locked;
+            SetCursorProperties();
+        }
+
+        /// <summary>
+        /// Sets the cursor properties (such as visibility and
+        /// lock mode) according to the state of the game.
+        /// </summary>
+        private void SetCursorProperties()
+        {
+            // Only set cursor properties if it is wanted for the current scene
+            // (i.e. in some mini game scenes you don't want to lock the cursor ever).
+            if (LockCursorOnExit)
+            {
+                Cursor.visible = GamePausedState;
+                // Unlocks the cursor according to the paused state in order to navigate the pause menu.
+                Cursor.lockState = GamePausedState ? CursorLockMode.None : CursorLockMode.Locked;
+            }
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Cake
+﻿namespace Assets.Scripts.MiniGames.Cake
 {
     /// <summary>
     /// Holds the different ingredient types.

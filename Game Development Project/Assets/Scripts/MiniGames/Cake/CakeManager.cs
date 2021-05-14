@@ -1,58 +1,25 @@
 ﻿using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.Cake
+namespace Assets.Scripts.MiniGames.Cake
 {
     public class CakeManager : MonoBehaviour
     {
         public Ingredient[] Ingredients;
-        public Button[] IngredientButtons;
-        public string[] SpeechBubbleText;
-        public TextMeshPro SpeechBubble;
-        public RawImage SpeechBubbleImage;
         public ParticleSystem ParticleSystem;
         public AudioSource CorrectSfx;
         public AudioSource WrongSfx;
+
+        public UiController UiController;
 
         private int _currentCakeStep;
         private const int TotalCakeSteps = 9;
 
         void Awake()
         {
-            StartCoroutine(DisableMiniGameFor(4f));
-        }
-
-        /// <summary>
-        /// Disables the mini game for the specified amount of seconds.
-        /// </summary>
-        /// <param name="seconds">The amount of seconds to be disabled for.</param>
-        private IEnumerator DisableMiniGameFor(float seconds)
-        {
-            DisableMiniGame();
-
-            // After waiting for the specified amount of seconds, re-enables everything again.
-            yield return new WaitForSeconds(seconds);
-            SpeechBubbleImage.enabled = true;
-            SpeechBubble.SetText(SpeechBubbleText[_currentCakeStep]);
-            foreach (var button in IngredientButtons)
-            {
-                button.interactable = true;
-            }
-        }
-
-        /// <summary>
-        /// Disables the playable components of the mini game.
-        /// </summary>
-        private void DisableMiniGame()
-        {
-            SpeechBubbleImage.enabled = false;
-            SpeechBubble.SetText("");
-            foreach (var button in IngredientButtons)
-            {
-                button.interactable = false;
-            }
+            // TODO: Add voice over audio and change # seconds according to the audio duration.
+            StartCoroutine(UiController.DisableMiniGameFor(4f));
         }
 
         /// <summary>
@@ -69,11 +36,11 @@ namespace Assets.Scripts.Cake
                 StartCoroutine(PlayCorrectIngredientFx());
                 if (IsMiniGameFinished())
                 {
-                    DisableMiniGame();
+                    StartCoroutine(UiController.MiniGameFinished(2f));
                     return;
                 }
 
-                StartCoroutine(SetSpeechBubbleText(_currentCakeStep));
+                StartCoroutine(UiController.SetSpeechBubbleText(_currentCakeStep));
             }
             else
             {
@@ -105,16 +72,11 @@ namespace Assets.Scripts.Cake
         }
 
         /// <summary>
-        /// Sets the proper text on the speech bubble of the NPC.
+        /// Loads the village scene.
         /// </summary>
-        private IEnumerator SetSpeechBubbleText(int textIndex)
+        public void NavigateVillageScene()
         {
-            // Clear the speech bubble first.
-            SpeechBubbleImage.enabled = false;
-            SpeechBubble.SetText("");
-            yield return new WaitForSeconds(0.3f);
-            SpeechBubbleImage.enabled = true;
-            SpeechBubble.SetText(SpeechBubbleText[textIndex]);
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }
