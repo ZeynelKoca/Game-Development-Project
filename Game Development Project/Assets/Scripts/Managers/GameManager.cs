@@ -110,6 +110,12 @@ namespace Assets.Scripts.Managers
                 var panda = GameObject.FindGameObjectWithTag("PandaNPC");
                 ActivateNpc(panda);
             }
+            if (!AchievementsManager.Instance.CrocodileAchieved)
+            {
+                var crocodile = GameObject.FindGameObjectWithTag("CrocodileNPC");
+                ActivateNpc(crocodile);
+            }
+
             // TODO: else if statements for every other npc in the game in order of activation.
         }
 

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +21,37 @@ namespace Assets.Scripts.MiniGames.Cake
         void Awake()
         {
             // TODO: Add voice over audio and change # seconds according to the audio duration.
+            SubscribeToExternalEvents();
             StartCoroutine(UiController.DisableMiniGameFor(4f));
+
+            // Initializes the sfx volume
+            UpdateSfxVolume(null, null);
+        }
+
+        /// <summary>
+        /// Subscribes to external events.
+        /// </summary>
+        private void SubscribeToExternalEvents()
+        {
+            Settings.OnVolumeChanged += UpdateSfxVolume;
+        }
+
+        /// <summary>
+        /// Unsubscribes from external events.
+        /// </summary>
+        private void UnsubscribeFromExternalEvents()
+        {
+            Settings.OnVolumeChanged -= UpdateSfxVolume;
+        }
+
+        /// <summary>
+        /// Updates the volume of the sound effects in the mini game
+        /// according to the player's volume setting.
+        /// </summary>
+        private void UpdateSfxVolume(object sender, EventArgs e)
+        {
+            CorrectSfx.volume = Settings.VolumeSetting;
+            WrongSfx.volume = Settings.VolumeSetting;
         }
 
         /// <summary>
@@ -36,7 +68,7 @@ namespace Assets.Scripts.MiniGames.Cake
                 StartCoroutine(PlayCorrectIngredientFx());
                 if (IsMiniGameFinished())
                 {
-                    StartCoroutine(UiController.MiniGameFinished(2f));
+                    CloseMiniGame();
                     return;
                 }
 
@@ -46,6 +78,29 @@ namespace Assets.Scripts.MiniGames.Cake
             {
                 // Wrong ingredient has been clicked.
                 WrongSfx.Play();
+            }
+        }
+
+        /// <summary>
+        /// Shuts down all playable components of the mini game
+        /// and rewards the player with an achievement.
+        /// </summary>
+        private void CloseMiniGame()
+        {
+            StartCoroutine(UiController.MiniGameFinished(2f));
+            AssignAchievement();
+            UnsubscribeFromExternalEvents();
+        }
+
+        /// <summary>
+        /// Assigns the achievement for completing the
+        /// quest of current NPC to the player.
+        /// </summary>
+        private void AssignAchievement()
+        {
+            if (!AchievementsManager.Instance.CrocodileAchieved)
+            {
+                AchievementsManager.Instance.CrocodileAchieved = true;
             }
         }
 

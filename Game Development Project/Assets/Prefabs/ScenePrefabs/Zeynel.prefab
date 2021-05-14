@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 353288208}
   Npc: {fileID: 353288207}
   Text: {fileID: 8184936167903959399}
@@ -233,7 +236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1473775304450677039
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,6 +1137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 1506049282758569061}
   Npc: {fileID: 1752018570644993927}
   Text: {fileID: 6596436973152502730}
@@ -1605,6 +1611,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 3263568770868063835}
   Npc: {fileID: 2606381235100326405}
   Text: {fileID: 1307783725630006854}
@@ -1765,13 +1774,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4822393019839283259}
-  m_LocalRotation: {x: 0.021021746, y: 0.027392162, z: -0.00057617476, w: 0.99940354}
-  m_LocalPosition: {x: -15.33, y: -0.62, z: 3.71}
+  m_LocalRotation: {x: 0.03053292, y: -0.9503544, z: 0.29345694, w: 0.09888025}
+  m_LocalPosition: {x: -11.3, y: 3.78, z: 13.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4360154909966420976}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 2.41, y: 3.14, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.32, y: -168.12, z: 0}
 --- !u!20 &6518867660748136756
 Camera:
   m_ObjectHideFlags: 0
@@ -1840,7 +1849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5006674942842657790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16, y: -1.43, z: 0.21}
+  m_LocalPosition: {x: 0, y: -0.57, z: 0.21}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 432450982421734389}
@@ -2234,6 +2243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    _sceneAsset: {fileID: 102900000, guid: ca939dc0eb15cfc498da403416a8374c, type: 3}
+    _sceneName: Scenes/CakeMinigame
   NpcPatrol: {fileID: 5466487249348352594}
   Npc: {fileID: 122119697566120028}
   Text: {fileID: 2431633343405191356}
@@ -3040,6 +3052,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MiniGameScene:
+    _sceneAsset: {fileID: 0}
+    _sceneName: 
   NpcPatrol: {fileID: 2484459018491659479}
   Npc: {fileID: 1155725831425088703}
   Text: {fileID: 5244514702984137125}
@@ -3056,8 +3071,8 @@ GameObject:
   - component: {fileID: 122119697566120028}
   - component: {fileID: 5466487249348352594}
   m_Layer: 0
-  m_Name: CrocodilelNPC
-  m_TagString: Untagged
+  m_Name: CrocodileNPC
+  m_TagString: CrocodileNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3091,9 +3106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c099235e92ebce24ba70213dc1e45e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NpcType: 0
+  NpcType: 1
   Camera: {fileID: 6518867660748136756}
-  PlayerPositionOffset: {x: 0, y: 0, z: 0}
+  PlayerPositionOffset: {x: 5.6, y: -0.5, z: -0.2}
   DialogText:
   - Hello there!
   - I'm an image of the main character.

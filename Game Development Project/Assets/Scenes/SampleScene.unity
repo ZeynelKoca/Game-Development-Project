@@ -1792,16 +1792,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8323955704386564437, guid: 643468928d0db5f4d99af7b1f29d16fd,
-        type: 3}
-      propertyPath: LockCursorOnExit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8323955704386564438, guid: 643468928d0db5f4d99af7b1f29d16fd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8323955704432320941, guid: 643468928d0db5f4d99af7b1f29d16fd,
         type: 3}
       propertyPath: m_RootOrder

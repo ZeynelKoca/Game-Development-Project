@@ -2,6 +2,7 @@
 {
     public enum NpcType
     {
-        Panda
+        Panda,
+        Crocodile
     }
 }

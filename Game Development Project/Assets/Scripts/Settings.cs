@@ -17,6 +17,7 @@ namespace Assets.Scripts
         public AudioMixer AudioMixer;
 
         public static event EventHandler OnMouseSensitivityChanged;
+        public static event EventHandler OnVolumeChanged;
 
         private Resolution[] _resolutions;
 
@@ -126,6 +127,7 @@ namespace Assets.Scripts
             VolumeSlider.value = VolumeSetting;
 
             AudioMixer.SetFloat("MainVolume", Mathf.Log(VolumeSetting) * 20);
+            OnVolumeChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

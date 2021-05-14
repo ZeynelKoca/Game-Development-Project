@@ -7,7 +7,7 @@ namespace Assets.Scripts.Npc
 {
     public class NpcTrigger : MonoBehaviour
     {
-        //public SceneField MiniGameScene;
+        public SceneField MiniGameScene;
         public NpcPatrol NpcPatrol;
         public InteractableObject Npc;
         public Text Text;
@@ -79,7 +79,7 @@ namespace Assets.Scripts.Npc
         /// Calculates the new player position according to the location
         /// of the npc and the set player position offset.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The new position coordinates of the player.</returns>
         public Vector3 CalculateNewPlayerPosition()
         {
             return Npc.Object.transform.position + Npc.PlayerPositionOffset;

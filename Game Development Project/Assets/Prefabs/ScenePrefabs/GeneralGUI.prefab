@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUI: {fileID: 8323955703232455413}
-  LockCursorOnExit: 0
+  LockCursorOnExit: 1
 --- !u!1 &8323955704432320942
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +277,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8323955704386564437}
+    - target: {fileID: 8024283733062970546, guid: 5f57eab61434d8a42b26bace68763f59,
+        type: 3}
+      propertyPath: m_TagString
+      value: CrocodileAchievementCross
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f57eab61434d8a42b26bace68763f59, type: 3}
 --- !u!1 &8323955703232455413 stripped

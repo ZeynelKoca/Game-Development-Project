@@ -9,6 +9,8 @@ TagManager:
   - Achievements
   - Wall
   - Tree
+  - CrocodileNPC
+  - CrocodileAchievementCross
   layers:
   - Default
   - TransparentFX
