@@ -16,12 +16,12 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
-            // TODO: Set next NPC (InteractableObject.Interactable) to True.
+            // TODO: Set next NPCs (InteractableObject.Interactable) to True.
 
             _npcTrigger.ExclamationMark.SetActive(false);
             SavePlayerTransformData();
             AssignAchievement();
-            //NavigateMiniGameScene();
+            NavigateMiniGameScene();
 
             return _npcTrigger.NpcCompletedState;
         }
@@ -70,16 +70,16 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         /// <summary>
         /// Loads the NPCs mini-game scene.
         /// </summary>
-        //public void NavigateMiniGameScene()
-        //{
-        //    if (_npcTrigger.MiniGameScene.SceneName != String.Empty)
-        //    {
-        //        InteractableObject.IsDialogShowing = false;
-        //        // Game is not in paused state when in the main menu, but you still want to be able to use the Cursor.
-        //        Cursor.visible = true;
-        //        Cursor.lockState = CursorLockMode.None;
-        //        SceneManager.LoadScene(_npcTrigger.MiniGameScene);
-        //    }
-        //}
+        public void NavigateMiniGameScene()
+        {
+            if (_npcTrigger.MiniGameScene.SceneName != String.Empty)
+            {
+                InteractableObject.IsDialogShowing = false;
+                // Game is not in paused state when in the main menu, but you still want to be able to use the Cursor.
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(_npcTrigger.MiniGameScene);
+            }
+        }
     }
 }

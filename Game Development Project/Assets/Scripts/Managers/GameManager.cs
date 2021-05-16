@@ -40,14 +40,19 @@ namespace Assets.Scripts.Managers
         /// Checks whether the Main Character's transform values
         /// were saved and if so, initializes it with these saved values.
         /// </summary>
+        /// <remarks>
+        /// This can be used to initialize the character's position after a mini game scene.
+        /// </remarks>
         private void InitMainCharacterTransform()
         {
             if (SceneChangeSaveData.MainCharacterPosition != null)
             {
+                // Position
                 InitMainCharacterPosition();
             }
             if (SceneChangeSaveData.MainCharacterRotation != null)
             {
+                // Rotation
                 InitMainCharacterRotation();
             }
         }
@@ -105,6 +110,12 @@ namespace Assets.Scripts.Managers
                 var panda = GameObject.FindGameObjectWithTag("PandaNPC");
                 ActivateNpc(panda);
             }
+            if (!AchievementsManager.Instance.CrocodileAchieved)
+            {
+                var crocodile = GameObject.FindGameObjectWithTag("CrocodileNPC");
+                ActivateNpc(crocodile);
+            }
+
             // TODO: else if statements for every other npc in the game in order of activation.
         }
 

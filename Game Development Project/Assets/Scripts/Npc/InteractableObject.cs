@@ -21,8 +21,10 @@ namespace Assets.Scripts.Npc
             {
                 switch (NpcType)
                 {
-                    case (NpcType.Panda):
+                    case NpcType.Panda:
                         return GameObject.FindGameObjectWithTag("PandaNPC");
+                    case NpcType.Crocodile:
+                        return GameObject.FindGameObjectWithTag("CrocodileNPC");
                     default:
                         return null;
                 }

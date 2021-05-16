@@ -30,6 +30,26 @@ namespace Assets.Scripts.Managers
 
         #endregion
 
+        #region CrocodileAchievement
+
+        public event Action OnCrocodileAchievementChanged;
+        protected virtual void CrocodileAchievementChanged()
+        {
+            OnCrocodileAchievementChanged?.Invoke();
+        }
+
+        public bool CrocodileAchieved
+        {
+            get => PlayerPrefs.GetInt("CrocodileAchieved", 0) == 1;
+            set
+            {
+                PlayerPrefs.SetInt("CrocodileAchieved", value ? 1 : 0);
+                CrocodileAchievementChanged();
+            }
+        }
+
+        #endregion
+
         void Awake()
         {
             CreateSingleton();
@@ -63,6 +83,7 @@ namespace Assets.Scripts.Managers
         public void ResetAllAchievements()
         {
             PandaAchieved = false;
+            CrocodileAchieved = false;
         }
     }
 }

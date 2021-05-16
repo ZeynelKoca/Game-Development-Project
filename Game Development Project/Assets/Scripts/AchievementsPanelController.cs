@@ -7,12 +7,6 @@ namespace Assets.Scripts
     {
         public GameObject AchievementsPanel;
 
-        #region PandaAchievement
-
-        private GameObject _pandaAchievementCross;
-
-        #endregion
-
         /// <summary>
         /// Activates the achievements panel.
         /// </summary>
@@ -37,16 +31,27 @@ namespace Assets.Scripts
         private void UpdateAllAchievements()
         {
             UpdatePandaAchievement();
+            UpdateCrocodileAchievement();
         }
 
         /// <summary>
         /// Updates the UI display of the panda achievement according
-        /// to the achieved state in <see cref="AchievementsManager"/>
+        /// to the achieved state in <see cref="AchievementsManager"/>.
         /// </summary>
-        public void UpdatePandaAchievement()
+        private void UpdatePandaAchievement()
         {
-            _pandaAchievementCross = GameObject.FindGameObjectWithTag("PandaAchievementCross");
-            _pandaAchievementCross.SetActive(!AchievementsManager.Instance.PandaAchieved);
+            var pandaAchievementCross = GameObject.FindGameObjectWithTag("PandaAchievementCross");
+            pandaAchievementCross.SetActive(!AchievementsManager.Instance.PandaAchieved);
+        }
+
+        /// <summary>
+        /// Updates the UI display of the crocodile achievement according
+        /// to the achieved state in <see cref="AchievementsManager"/>.
+        /// </summary>
+        private void UpdateCrocodileAchievement()
+        {
+            var crocodileAchievementCross = GameObject.FindGameObjectWithTag("CrocodileAchievementCross");
+            crocodileAchievementCross.SetActive(!AchievementsManager.Instance.CrocodileAchieved);
         }
     }
 }

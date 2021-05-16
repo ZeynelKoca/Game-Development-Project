@@ -19,13 +19,16 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             InitTriggerData();
 
-            if (_npcTrigger.GamePaused && Input.anyKeyDown)
+            if (_npcTrigger.GamePaused && !PauseMenuController.GamePausedState && Input.anyKeyDown)
             {
-                _npcTrigger.Npc.Talk(_npcTrigger.Text);
-                
-                if (_npcTrigger.Npc.DialogDone)
+                if (!Input.GetKeyDown(KeyCode.P) && !Input.GetKeyDown(KeyCode.Escape))
                 {
-                    return _npcTrigger.NpcCompletedState;
+                    _npcTrigger.Npc.Talk(_npcTrigger.Text);
+
+                    if (_npcTrigger.Npc.DialogDone)
+                    {
+                        return _npcTrigger.NpcCompletedState;
+                    }
                 }
             }
 
