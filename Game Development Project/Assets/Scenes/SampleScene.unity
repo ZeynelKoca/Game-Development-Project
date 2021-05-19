@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: a5f500b6587773441a8554d260610821, type: 2}
 --- !u!1 &51729046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,18 +1094,6 @@ Transform:
   m_Father: {fileID: 1625229652}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1476766761 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 353288208, guid: 2fd77d7f924e5614ab6d15c81b6e28b2,
-    type: 3}
-  m_PrefabInstance: {fileID: 7271707725468152191}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c272f305ff0374aa95b09c68311556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1595733451
 GameObject:
   m_ObjectHideFlags: 3
@@ -1506,7 +1494,7 @@ PrefabInstance:
     - target: {fileID: 2047696614, guid: f3fa27fe3bdcc374483c712f31fb6109, type: 3}
       propertyPath: NpcPatrol
       value: 
-      objectReference: {fileID: 1476766761}
+      objectReference: {fileID: 0}
     - target: {fileID: 2047696614, guid: f3fa27fe3bdcc374483c712f31fb6109, type: 3}
       propertyPath: StateText
       value: 
@@ -1792,6 +1780,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8323955704386564438, guid: 643468928d0db5f4d99af7b1f29d16fd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8323955704432320941, guid: 643468928d0db5f4d99af7b1f29d16fd,
         type: 3}
       propertyPath: m_RootOrder

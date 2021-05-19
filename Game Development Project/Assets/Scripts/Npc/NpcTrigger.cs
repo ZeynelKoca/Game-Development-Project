@@ -7,6 +7,7 @@ namespace Assets.Scripts.Npc
 {
     public class NpcTrigger : MonoBehaviour
     {
+        public SpriteFacePlayer SpriteFacePlayer;
         public SceneField MiniGameScene;
         public NpcPatrol NpcPatrol;
         public InteractableObject Npc;
@@ -73,16 +74,6 @@ namespace Assets.Scripts.Npc
 
             // Start the npc off with the idle state.
             CurrentNpcState = NpcIdleState;
-        }
-
-        /// <summary>
-        /// Calculates the new player position according to the location
-        /// of the npc and the set player position offset.
-        /// </summary>
-        /// <returns>The new position coordinates of the player.</returns>
-        public Vector3 CalculateNewPlayerPosition()
-        {
-            return Npc.Object.transform.position + Npc.PlayerPositionOffset;
         }
     }
 }

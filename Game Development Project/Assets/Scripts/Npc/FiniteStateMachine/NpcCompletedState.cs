@@ -62,6 +62,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             InteractableObject.IsDialogShowing = false;
             _npcTrigger.Npc.Camera.enabled = false;
+            _npcTrigger.SpriteFacePlayer.IsInteracted = false;
             _npcTrigger.Text.enabled = false;
             _npcTrigger.GamePaused = false;
             Time.timeScale = 1f;
