@@ -9,7 +9,6 @@ namespace Assets.Scripts.Npc
 
         public NpcType NpcType;
         public Camera Camera;
-        public Vector3 PlayerPositionOffset;
         public string[] DialogText;
 
         private int _currentDialogIndex;
