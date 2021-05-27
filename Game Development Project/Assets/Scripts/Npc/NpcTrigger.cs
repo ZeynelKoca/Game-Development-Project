@@ -55,7 +55,7 @@ namespace Assets.Scripts.Npc
         {
             if (!IsTriggerActive)
             {
-                Text.enabled = false;
+                Npc.InteractText.SetActive(false);
             }
 
             // Execute the current state action and store the upcoming (transition) state to be called in the next Update loop.
