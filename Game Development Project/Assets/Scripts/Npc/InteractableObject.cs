@@ -9,6 +9,7 @@ namespace Assets.Scripts.Npc
 
         public NpcType NpcType;
         public Camera Camera;
+        public GameObject InteractText;
         public string[] DialogText;
 
         private int _currentDialogIndex;

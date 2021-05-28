@@ -43,6 +43,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             if (!Interacted)
             {
+                _npcTrigger.Npc.InteractText.SetActive(false);
                 _npcTrigger.Text.enabled = true;
                 _npcTrigger.GamePaused = true;
                 _npcTrigger.Npc.Camera.enabled = true;
