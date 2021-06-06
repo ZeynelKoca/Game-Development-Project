@@ -11,6 +11,8 @@ TagManager:
   - Tree
   - CrocodileNPC
   - CrocodileAchievementCross
+  - OstrichExpressions
+  - DefaultOstrich
   layers:
   - Default
   - TransparentFX

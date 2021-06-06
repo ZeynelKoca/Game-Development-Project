@@ -14,9 +14,10 @@ namespace Assets.Scripts.MiniGames.Cake
         public AudioSource WrongSfx;
 
         public UiController UiController;
+        public NpcAnimationController NpcAnimationController;
 
-        private int _currentCakeStep;
         private const int TotalCakeSteps = 9;
+        private int _currentCakeStep;
 
         void Awake()
         {
@@ -61,13 +62,15 @@ namespace Assets.Scripts.MiniGames.Cake
         /// <param name="ingredientComponent">The ingredient type of the pressed button.</param>
         public void OnIngredientClick(IngredientComponent ingredientComponent)
         {
+            bool correctIngredientClicked;
             if (ingredientComponent.Ingredient == Ingredients[_currentCakeStep])
             {
-                // Correct ingredient has been clicked.
+                correctIngredientClicked = true;
                 _currentCakeStep++;
                 StartCoroutine(PlayCorrectIngredientFx());
                 if (IsMiniGameFinished())
                 {
+                    StartCoroutine(NpcAnimationController.SetFinishedSprite());
                     CloseMiniGame();
                     return;
                 }
@@ -76,9 +79,18 @@ namespace Assets.Scripts.MiniGames.Cake
             }
             else
             {
-                // Wrong ingredient has been clicked.
+                correctIngredientClicked = false;
                 WrongSfx.Play();
             }
+
+            if (!NpcAnimationController.Initialized)
+            {
+                // Initialize the first Npc expression through the default Npc sprite.
+                StartCoroutine(NpcAnimationController.InitNpcExpression(correctIngredientClicked));
+                return;
+            }
+
+            NpcAnimationController.ChangeNpcExpression(correctIngredientClicked);
         }
 
         /// <summary>
