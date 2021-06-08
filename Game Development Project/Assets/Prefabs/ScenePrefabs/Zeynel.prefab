@@ -4181,9 +4181,9 @@ MonoBehaviour:
   InteractText: {fileID: 6686271234746882890}
   DialogText:
   - Hello there!
-  - I'm an image of the main character.
-  - Why I'm not in 3D you ask?
-  - I wish I knew that myself...
+  - I'm an image of the Crocodile npc.
+  - This text is an example text.
+  - Now play this minigame!
 --- !u!1 &7996850063883060242
 GameObject:
   m_ObjectHideFlags: 0
