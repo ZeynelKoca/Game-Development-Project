@@ -49,7 +49,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                 _npcTrigger.Npc.Camera.enabled = true;
                 var playerMovement = _player.GetComponent<PlayerMovementController>();
                 playerMovement.FaceDirection(_npcTrigger.NpcPatrol.transform.position);
-                _npcTrigger.SpriteFacePlayer.FaceDirection(_npcTrigger.Npc.Camera.transform);
+                _npcTrigger.NpcFacePlayer.FaceDirection(_npcTrigger.Npc.Camera.transform);
                 _npcTrigger.Npc.InitDialog(_npcTrigger.Text);
                 Time.timeScale = 0f;
                 Interacted = true;

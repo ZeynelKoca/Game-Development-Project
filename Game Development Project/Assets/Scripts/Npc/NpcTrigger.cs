@@ -7,7 +7,7 @@ namespace Assets.Scripts.Npc
 {
     public class NpcTrigger : MonoBehaviour
     {
-        public SpriteFacePlayer SpriteFacePlayer;
+        public NpcFacePlayer NpcFacePlayer;
         public SceneField MiniGameScene;
         public NpcPatrol NpcPatrol;
         public InteractableObject Npc;

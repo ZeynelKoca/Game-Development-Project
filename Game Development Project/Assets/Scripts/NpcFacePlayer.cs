@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class SpriteFacePlayer : MonoBehaviour
+    public class NpcFacePlayer : MonoBehaviour
     {
         public bool IsInteracted { get; set; }
 
