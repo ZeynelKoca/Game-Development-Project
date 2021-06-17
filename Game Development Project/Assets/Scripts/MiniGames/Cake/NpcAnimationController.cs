@@ -17,7 +17,7 @@ namespace Assets.Scripts.MiniGames.Cake
 
         public bool Initialized { get; set; }
 
-        void Awake()
+        void Start()
         {
             _npcExpressionsImage = GameObject.FindGameObjectWithTag("OstrichExpressions").GetComponent<Image>();
         }
