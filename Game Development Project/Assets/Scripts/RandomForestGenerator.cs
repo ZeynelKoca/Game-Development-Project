@@ -14,7 +14,7 @@ namespace Assets.Scripts
         {
             int xPos = (int)gameObject.transform.localPosition.x;
             int zPos = (int)gameObject.transform.localPosition.z;
-            float yPos = Elevated ? 0.3f : -0.3f;
+            float yPos = Elevated ? 0.4f : -0.2f;
 
             // Loop through all the positions within our forest boundary.
             for (int x = xPos; x < ForestSize + xPos; x += ElementSpacing)
