@@ -16,8 +16,6 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
-            // TODO: Set next NPCs (InteractableObject.Interactable) to True.
-
             _npcTrigger.ExclamationMark.SetActive(false);
             SavePlayerTransformData();
             AssignAchievement();

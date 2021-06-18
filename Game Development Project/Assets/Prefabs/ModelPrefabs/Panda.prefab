@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteFacePlayer: {fileID: 4481276798936702647}
+  NpcFacePlayer: {fileID: 0}
   MiniGameScene:
     _sceneAsset: {fileID: 102900000, guid: 11d3683edfcb1f54eb17a277db4bd6a5, type: 3}
     _sceneName: Scenes/FlagsMinigame

@@ -103,6 +103,9 @@ namespace Assets.Scripts.Managers
         /// Initializes the proper variables and states for
         /// all the NPCs in the game.
         /// </summary>
+        /// <remarks>
+        /// Order of achievement checks directly reflects the order of npc interactibility.
+        /// </remarks>
         private void InitNpcs()
         {
             if (!AchievementsManager.Instance.PandaAchieved)
@@ -110,13 +113,46 @@ namespace Assets.Scripts.Managers
                 var panda = GameObject.FindGameObjectWithTag("PandaNPC");
                 ActivateNpc(panda);
             }
-            if (!AchievementsManager.Instance.CrocodileAchieved)
+            else if (!AchievementsManager.Instance.BearAchieved)
+            {
+                var bear = GameObject.FindGameObjectWithTag("BearNPC");
+                ActivateNpc(bear);
+            }
+            else if (!AchievementsManager.Instance.BirdAchieved)
+            {
+                var bird = GameObject.FindGameObjectWithTag("BirdNPC");
+                ActivateNpc(bird);
+            }
+            else if (!AchievementsManager.Instance.DogAchieved)
+            {
+                var dog = GameObject.FindGameObjectWithTag("DogNPC");
+                ActivateNpc(dog);
+            }
+            else if (!AchievementsManager.Instance.ElephantAchieved)
+            {
+                var elephant = GameObject.FindGameObjectWithTag("ElephantNPC");
+                ActivateNpc(elephant);
+            }
+            else if (!AchievementsManager.Instance.MonkeyAchieved)
+            {
+                var monkey = GameObject.FindGameObjectWithTag("MonkeyNPC");
+                ActivateNpc(monkey);
+            }
+            else if (!AchievementsManager.Instance.PenguinAchieved)
+            {
+                var penguin = GameObject.FindGameObjectWithTag("PenguinNPC");
+                ActivateNpc(penguin);
+            }
+            else if (!AchievementsManager.Instance.SquirrelAchieved)
+            {
+                var squirrel = GameObject.FindGameObjectWithTag("SquirrelNPC");
+                ActivateNpc(squirrel);
+            }
+            else if (!AchievementsManager.Instance.CrocodileAchieved)
             {
                 var crocodile = GameObject.FindGameObjectWithTag("CrocodileNPC");
                 ActivateNpc(crocodile);
             }
-
-            // TODO: else if statements for every other npc in the game in order of activation.
         }
 
         /// <summary>
