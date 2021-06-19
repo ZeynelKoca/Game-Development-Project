@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Npc.FiniteStateMachine;
 using Assets.Scripts.Utilities;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.Npc
 {
@@ -11,7 +10,6 @@ namespace Assets.Scripts.Npc
         public SceneField MiniGameScene;
         public NpcPatrol NpcPatrol;
         public InteractableObject Npc;
-        public Text Text;
         public GameObject ExclamationMark;
 
         #region States
@@ -20,18 +18,19 @@ namespace Assets.Scripts.Npc
         public NpcIdleState NpcIdleState;
         public NpcInteractableState NpcInteractableState;
         public NpcInteractedState NpcInteractedState;
+        public NpcInteractionFinishedState NpcInteractionFinishedState;
         public NpcCompletedState NpcCompletedState;
 
         #endregion
 
-        public bool GamePaused { get; set; }
+        public bool TriggerInteracted { get; set; }
         public bool IsTriggerActive { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             InitStates();
             Npc.Camera.enabled = false;
-            GamePaused = false;
+            TriggerInteracted = false;
             IsTriggerActive = false;
         }
 
@@ -70,6 +69,7 @@ namespace Assets.Scripts.Npc
             NpcIdleState = new NpcIdleState(this);
             NpcInteractableState = new NpcInteractableState(this);
             NpcInteractedState = new NpcInteractedState(this);
+            NpcInteractionFinishedState = new NpcInteractionFinishedState(this);
             NpcCompletedState = new NpcCompletedState(this);
 
             // Start the npc off with the idle state.

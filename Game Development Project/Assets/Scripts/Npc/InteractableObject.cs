@@ -8,40 +8,27 @@ namespace Assets.Scripts.Npc
         public static bool IsDialogShowing;
 
         public NpcType NpcType;
+        public NpcType NextQuestNpcType;
         public Camera Camera;
         public GameObject InteractText;
+        public Text UiText;
         public string[] DialogText;
+        public string[] MiniGameAchievedText;
 
+        private string[] _currentDialogText;
         private int _currentDialogIndex;
         private bool _dialogInitialized;
-
-        public GameObject Object
-        {
-            get
-            {
-                switch (NpcType)
-                {
-                    case NpcType.Panda:
-                        return GameObject.FindGameObjectWithTag("PandaNPC");
-                    case NpcType.Crocodile:
-                        return GameObject.FindGameObjectWithTag("CrocodileNPC");
-                    default:
-                        return null;
-                }
-            }
-        }
 
         public bool Interactable { get; set; }
         public bool DialogDone { get; private set; }
 
         /// <summary>
-        /// Sets the proper sentence(s) on the specified Text UI.
+        /// Sets the proper sentence(s) of the dialog on the UI Text.
         /// </summary>
-        /// <param name="text">The Text object.</param>
-        public void Talk(Text text)
+        public void DisplayDialogSentence()
         {
             _currentDialogIndex++;
-            DialogDone = _currentDialogIndex == DialogText.Length;
+            DialogDone = _currentDialogIndex == _currentDialogText.Length;
 
             if (DialogDone)
             {
@@ -49,23 +36,44 @@ namespace Assets.Scripts.Npc
                 _dialogInitialized = false;
                 return;
             }
-            
-            text.text = DialogText[_currentDialogIndex];
+
+            UiText.text = _currentDialogText[_currentDialogIndex];
         }
 
         /// <summary>
         /// Initializes the proper variables in order to start the dialog
         /// of the current object and displays the first dialog text.
         /// </summary>
-        public void InitDialog(Text text)
+        public void InitInitialDialog()
         {
             if (!_dialogInitialized)
             {
+                _currentDialogText = DialogText;
+                _currentDialogIndex = -1;
+                _dialogInitialized = true;
                 DialogDone = false;
                 IsDialogShowing = true;
-                _currentDialogIndex = - 1;
+                DisplayDialogSentence();
+            }
+        }
+
+        /// <summary>
+        /// Initializes the proper variables in order to start the dialog
+        /// of the current object and displays the first dialog text.
+        /// </summary>
+        public void InitMiniGameAchievedDialog()
+        {
+            if (!_dialogInitialized)
+            {
+                _currentDialogText = MiniGameAchievedText;
+                _currentDialogIndex = -1;
                 _dialogInitialized = true;
-                Talk(text);
+                DialogDone = false;
+                IsDialogShowing = true;
+                if (_currentDialogText.Length > 0)
+                {
+                    DisplayDialogSentence();
+                }
             }
         }
     }

@@ -33,6 +33,7 @@ Transform:
   - {fileID: 415134287130580268}
   - {fileID: 4217530919490436299}
   - {fileID: 3234411443181376110}
+  - {fileID: 7897394928900787032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,9 +83,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c272f305ff0374aa95b09c68311556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 3
+  MovementSpeed: 2
   PatrolWaitTime: 3
-  CameraTransform: {fileID: 0}
+  CameraTransform: {fileID: 7897394928900787032}
   PatrolSpots:
   - {fileID: 0}
   - {fileID: 0}
@@ -154,6 +155,80 @@ MonoBehaviour:
   Npc: {fileID: 5643773414772947937}
   Text: {fileID: 0}
   ExclamationMark: {fileID: 8395917442760864336}
+--- !u!1 &4822393019839283259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7897394928900787032}
+  - component: {fileID: 6518867660748136756}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7897394928900787032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822393019839283259}
+  m_LocalRotation: {x: 0.11922073, y: 0.26184958, z: -0.03261509, w: 0.9571612}
+  m_LocalPosition: {x: -29.650002, y: 10.45, z: -30.349995}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children: []
+  m_Father: {fileID: 987113355574371444}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 14.2, y: 30.6, z: 0}
+--- !u!20 &6518867660748136756
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822393019839283259}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &6068331734032741386
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,14 +274,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c099235e92ebce24ba70213dc1e45e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NpcType: 1
-  Camera: {fileID: 0}
+  NpcType: 8
+  Camera: {fileID: 6518867660748136756}
   InteractText: {fileID: 8787096020000877171}
   DialogText:
   - Hello there!
-  - I'm an image of the main character.
-  - Why I'm not in 3D you ask?
-  - I wish I knew that myself...
+  - I'm an image of the Crocodile npc.
+  - This text is an example text.
+  - Now play this minigame!
 --- !u!1 &8395917442760864336
 GameObject:
   m_ObjectHideFlags: 0

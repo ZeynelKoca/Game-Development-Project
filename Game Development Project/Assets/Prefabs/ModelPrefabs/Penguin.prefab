@@ -228,6 +228,7 @@ Transform:
   - {fileID: 207270926820434370}
   - {fileID: 1402234617219132312}
   - {fileID: 2701897309193149634}
+  - {fileID: 4555722593137842924}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,9 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c272f305ff0374aa95b09c68311556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 10
+  MovementSpeed: 8
   PatrolWaitTime: 1
-  CameraTransform: {fileID: 0}
+  CameraTransform: {fileID: 4555722593137842924}
   PatrolSpots:
   - {fileID: 0}
   - {fileID: 0}
@@ -341,14 +342,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b59a144c28b1b4497474a192d581c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NpcFacePlayer: {fileID: 0}
+  NpcFacePlayer: {fileID: 191047787524343613}
   MiniGameScene:
     _sceneAsset: {fileID: 0}
     _sceneName: 
-  NpcPatrol: {fileID: 0}
+  NpcPatrol: {fileID: 3832520799217926815}
   Npc: {fileID: 2606381235100326405}
   Text: {fileID: 0}
   ExclamationMark: {fileID: 9131896633102862458}
+--- !u!1 &5369316922185425403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4555722593137842924}
+  - component: {fileID: 8956977091299586494}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4555722593137842924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369316922185425403}
+  m_LocalRotation: {x: 0.09971644, y: 0.027261565, z: -0.0027330788, w: 0.9946386}
+  m_LocalPosition: {x: -0.866661, y: 20.599997, z: -54.466663}
+  m_LocalScale: {x: 6.666666, y: 6.666667, z: 6.6666656}
+  m_Children: []
+  m_Father: {fileID: 761227075622850714}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 11.45, y: 3.14, z: 0}
+--- !u!20 &8956977091299586494
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369316922185425403}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &8463762765978781089
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +436,7 @@ GameObject:
   - component: {fileID: 2606381235100326405}
   m_Layer: 0
   m_Name: PenguinInteractable
-  m_TagString: Untagged
+  m_TagString: PenguinNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,8 +469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c099235e92ebce24ba70213dc1e45e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NpcType: 0
-  Camera: {fileID: 0}
+  NpcType: 6
+  Camera: {fileID: 8956977091299586494}
   InteractText: {fileID: 90116847593917344}
   DialogText:
   - Hello there!

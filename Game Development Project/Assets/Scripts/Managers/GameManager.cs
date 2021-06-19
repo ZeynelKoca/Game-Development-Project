@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Npc;
+﻿using System;
+using Assets.Scripts.Npc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,22 @@ namespace Assets.Scripts.Managers
         void Start()
         {
             SubscribeToExternalEvents();
+        }
+        
+        /// <summary>
+        /// Ensures that only one instance is made of this gameObject.
+        /// </summary>
+        private void CreateSingleton()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
         /// <summary>
@@ -45,10 +62,10 @@ namespace Assets.Scripts.Managers
         /// </remarks>
         private void InitMainCharacterTransform()
         {
-            if (SceneChangeSaveData.MainCharacterPosition != null)
+            if (SceneChangeSaveData.MainCharacterPosition != null && SceneChangeSaveData.NpcPosition != null)
             {
                 // Position
-                InitMainCharacterPosition();
+                InitSceneSaveData();
             }
             if (SceneChangeSaveData.MainCharacterRotation != null)
             {
@@ -58,15 +75,74 @@ namespace Assets.Scripts.Managers
         }
 
         /// <summary>
+        /// Initializes the proper save data values according to
+        /// <see cref="SceneChangeSaveData"/> for the specified Npc.
+        /// </summary>
+        /// <param name="npcInteractable">The Npc GameObject to be initialized.</param>
+        private void InitNpcSaveData(GameObject npcInteractable)
+        {
+            // Npc position
+            System.Diagnostics.Debug.Assert(SceneChangeSaveData.NpcPosition != null);
+            npcInteractable.transform.parent.position = (Vector3)SceneChangeSaveData.NpcPosition;
+
+            // Npc state
+            var npcTrigger = npcInteractable.transform.Find("TriggerBox").GetComponent<NpcTrigger>();
+            npcTrigger.NpcCompletedState.TransitionedFromMiniGame = true;
+            npcTrigger.CurrentNpcState = npcTrigger.NpcCompletedState;
+        }
+
+        /// <summary>
+        /// Initializes the proper scene data values according to
+        /// the saved data in <see cref="SceneChangeSaveData"/>.
+        /// </summary>
+        private void InitSceneSaveData()
+        {
+            switch (SceneChangeSaveData.InteractedNpcType)
+            {
+                case NpcType.Panda:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("PandaNPC"));
+                    break;
+                case NpcType.Bear:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("BearNPC"));
+                    break;
+                case NpcType.Bird:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("BirdNPC"));
+                    break;
+                case NpcType.Dog:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("DogNPC"));
+                    break;
+                case NpcType.Elephant:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("ElephantNPC"));
+                    break;
+                case NpcType.Monkey:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("MonkeyNPC"));
+                    break;
+                case NpcType.Penguin:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("PenguinNPC"));
+                    break;
+                case NpcType.Squirrel:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("SquirrelNPC"));
+                    break;
+                case NpcType.Crocodile:
+                    InitNpcSaveData(GameObject.FindGameObjectWithTag("CrocodileNPC"));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            InitMainCharacterPosition();
+        }
+
+        /// <summary>
         /// Initializes the Main Character's position according to
         /// the saved position values in <see cref="SceneChangeSaveData"/>.
         /// </summary>
         private void InitMainCharacterPosition()
         {
-            var savedPosition = SceneChangeSaveData.MainCharacterPosition;
-            System.Diagnostics.Debug.Assert(savedPosition != null);
+            var savedPlayerPosition = SceneChangeSaveData.MainCharacterPosition;
+            System.Diagnostics.Debug.Assert(savedPlayerPosition != null);
             var playerGameObject = GameObject.FindGameObjectWithTag("Player");
-            playerGameObject.transform.position = (Vector3)savedPosition;
+            playerGameObject.transform.position = (Vector3)savedPlayerPosition;
             SceneChangeSaveData.MainCharacterPosition = null;
         }
 
@@ -81,22 +157,6 @@ namespace Assets.Scripts.Managers
             var playerGameObject = GameObject.FindGameObjectWithTag("Player");
             playerGameObject.transform.rotation = (Quaternion)savedRotation;
             SceneChangeSaveData.MainCharacterRotation = null;
-        }
-
-        /// <summary>
-        /// Ensures that only one instance is made of this gameObject.
-        /// </summary>
-        private void CreateSingleton()
-        {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
         }
 
         /// <summary>

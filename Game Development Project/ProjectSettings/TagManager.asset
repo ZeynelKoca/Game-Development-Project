@@ -5,14 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - PandaNPC
-  - PandaAchievementCross
   - Achievements
   - Wall
   - Tree
   - CrocodileNPC
-  - CrocodileAchievementCross
   - OstrichExpressions
   - DefaultOstrich
+  - BearNPC
+  - PenguinNPC
+  - SquirrelNPC
+  - DogNPC
+  - ElephantNPC
+  - MonkeyNPC
+  - BirdNPC
   layers:
   - Default
   - TransparentFX

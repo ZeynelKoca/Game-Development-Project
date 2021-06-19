@@ -15,7 +15,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             _npcTrigger.ExclamationMark.SetActive(true);
 
-            if (_npcTrigger.IsTriggerActive && !_npcTrigger.GamePaused)
+            if (_npcTrigger.IsTriggerActive && !_npcTrigger.TriggerInteracted)
             {
                 _npcTrigger.Npc.InteractText.SetActive(true);
 
