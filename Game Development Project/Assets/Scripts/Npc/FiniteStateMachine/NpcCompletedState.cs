@@ -33,6 +33,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                         if (_npcTrigger.Npc.DialogDone)
                         {
                             AssignAchievement();
+                            return _npcTrigger.NpcIdleState;
                         }
                     }
                 }
@@ -40,7 +41,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
             }
 
             AssignAchievement();
-            return _npcTrigger.NpcCompletedState;
+            return _npcTrigger.NpcIdleState;
         }
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                 _npcTrigger.TriggerInteracted = true;
                 _npcTrigger.Npc.Camera.enabled = true;
                 _npcTrigger.NpcFacePlayer.FaceDirection(_npcTrigger.Npc.Camera.transform);
-                _npcTrigger.Npc.InitMiniGameAchievedDialog();
+                _npcTrigger.Npc.StartMiniGameAchievedDialog();
                 Time.timeScale = 0f;
                 _triggerDataInitialized = true;
             }
@@ -146,6 +147,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                 _npcTrigger.Npc.UiText.enabled = false;
                 _npcTrigger.TriggerInteracted = false;
                 Time.timeScale = 1f;
+                TransitionedFromMiniGame = false;
                 _gameStateRestored = true;
             }
         }
@@ -156,10 +158,35 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         /// </summary>
         private void ActivateNextNpc()
         {
-            if (_npcTrigger.Npc.NextQuestNpcType == NpcType.Bear)
+            var npcGameObject = GetNpcGameObject(_npcTrigger.Npc.NextQuestNpcType);
+            var npcInteractableObject = npcGameObject.GetComponent<InteractableObject>();
+            npcInteractableObject.Interactable = true;
+        }
+
+        private GameObject GetNpcGameObject(NpcType npcType)
+        {
+            switch (npcType)
             {
-                var npc = GameObject.FindGameObjectWithTag("BearNPC");
-                npc.GetComponent<InteractableObject>().Interactable = true;
+                case NpcType.Panda:
+                    return GameObject.FindGameObjectWithTag("PandaNPC");
+                case NpcType.Bear:
+                    return GameObject.FindGameObjectWithTag("BearNPC");
+                case NpcType.Bird:
+                    return GameObject.FindGameObjectWithTag("BirdNPC");
+                case NpcType.Dog:
+                    return GameObject.FindGameObjectWithTag("DogNPC");
+                case NpcType.Elephant:
+                    return GameObject.FindGameObjectWithTag("ElephantNPC");
+                case NpcType.Monkey:
+                    return GameObject.FindGameObjectWithTag("MonkeyNPC");
+                case NpcType.Penguin:
+                    return GameObject.FindGameObjectWithTag("PenguinNPC");
+                case NpcType.Squirrel:
+                    return GameObject.FindGameObjectWithTag("SquirrelNPC");
+                case NpcType.Crocodile:
+                    return GameObject.FindGameObjectWithTag("CrocodileNPC");
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(npcType), npcType, null);
             }
         }
     }

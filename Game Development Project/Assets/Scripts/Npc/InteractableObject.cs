@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Assets.Scripts.Managers;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Npc
@@ -12,14 +14,16 @@ namespace Assets.Scripts.Npc
         public Camera Camera;
         public GameObject InteractText;
         public Text UiText;
-        public string[] DialogText;
-        public string[] MiniGameAchievedText;
+        public string[] InitialDialog;
+        public string[] MiniGameAchievedDialog;
+        public string[] FinishedDialog;
 
         private string[] _currentDialogText;
         private int _currentDialogIndex;
         private bool _dialogInitialized;
 
         public bool Interactable { get; set; }
+
         public bool DialogDone { get; private set; }
 
         /// <summary>
@@ -41,39 +45,89 @@ namespace Assets.Scripts.Npc
         }
 
         /// <summary>
-        /// Initializes the proper variables in order to start the dialog
-        /// of the current object and displays the first dialog text.
+        /// Initializes the proper settings in order to start the dialog
+        /// of the current object and tries to display the first dialog text.
         /// </summary>
-        public void InitInitialDialog()
+        private void InitGlobalDialogSettings()
         {
-            if (!_dialogInitialized)
+            _currentDialogIndex = -1;
+            _dialogInitialized = true;
+            DialogDone = false;
+            IsDialogShowing = true;
+            if (_currentDialogText.Length > 0)
             {
-                _currentDialogText = DialogText;
-                _currentDialogIndex = -1;
-                _dialogInitialized = true;
-                DialogDone = false;
-                IsDialogShowing = true;
                 DisplayDialogSentence();
             }
         }
 
         /// <summary>
-        /// Initializes the proper variables in order to start the dialog
-        /// of the current object and displays the first dialog text.
+        /// Starts the dialog of the current object by using the
+        /// sentences specified at <see cref="InitialDialog"/>.
         /// </summary>
-        public void InitMiniGameAchievedDialog()
+        public void StartInitialDialog()
         {
             if (!_dialogInitialized)
             {
-                _currentDialogText = MiniGameAchievedText;
-                _currentDialogIndex = -1;
-                _dialogInitialized = true;
-                DialogDone = false;
-                IsDialogShowing = true;
-                if (_currentDialogText.Length > 0)
-                {
-                    DisplayDialogSentence();
-                }
+                _currentDialogText = InitialDialog;
+                InitGlobalDialogSettings();
+            }
+        }
+
+        /// <summary>
+        /// Starts the dialog of the current object by using the
+        /// sentences specified at <see cref="MiniGameAchievedDialog"/>.
+        /// </summary>
+        public void StartMiniGameAchievedDialog()
+        {
+            if (!_dialogInitialized)
+            {
+                _currentDialogText = MiniGameAchievedDialog;
+                InitGlobalDialogSettings();
+            }
+        }
+
+        /// <summary>
+        /// Starts the dialog of the current object by using the
+        /// sentences specified at <see cref="FinishedDialog"/>.
+        /// </summary>
+        public void StartFinishedDialog()
+        {
+            if (!_dialogInitialized)
+            {
+                _currentDialogText = FinishedDialog;
+                InitGlobalDialogSettings();
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the current Npc has an active quest
+        /// for the player to finish, according to the <see cref="NpcType"/>.
+        /// </summary>
+        /// <returns>True if the npc has an unfinished quest, false otherwise.</returns>
+        public bool HasActiveQuest()
+        {
+            switch (NpcType)
+            {
+                case NpcType.Panda:
+                    return !AchievementsManager.Instance.PandaAchieved;
+                case NpcType.Bear:
+                    return !AchievementsManager.Instance.BearAchieved;
+                case NpcType.Bird:
+                    return !AchievementsManager.Instance.BirdAchieved;
+                case NpcType.Dog:
+                    return !AchievementsManager.Instance.DogAchieved;
+                case NpcType.Elephant:
+                    return !AchievementsManager.Instance.ElephantAchieved;
+                case NpcType.Monkey:
+                    return !AchievementsManager.Instance.MonkeyAchieved;
+                case NpcType.Penguin:
+                    return !AchievementsManager.Instance.PenguinAchieved;
+                case NpcType.Squirrel:
+                    return !AchievementsManager.Instance.SquirrelAchieved;
+                case NpcType.Crocodile:
+                    return !AchievementsManager.Instance.CrocodileAchieved;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

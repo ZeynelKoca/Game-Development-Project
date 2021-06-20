@@ -16,12 +16,18 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             _npcTrigger.ExclamationMark.SetActive(false);
 
-            if (_npcTrigger.MiniGameScene.SceneAsset != null)
+            if (_npcTrigger.Npc.HasActiveQuest())
             {
-                NavigateMiniGameScene();
+                if (_npcTrigger.MiniGameScene.SceneAsset != null)
+                {
+                    NavigateMiniGameScene();
+                }
+
+                return _npcTrigger.NpcCompletedState;
             }
 
-            return _npcTrigger.NpcCompletedState;
+            RestoreGameState();
+            return _npcTrigger.NpcIdleState;
         }
 
         /// <summary>
@@ -41,7 +47,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         /// <summary>
         /// Loads the NPCs mini-game scene.
         /// </summary>
-        public void NavigateMiniGameScene()
+        private void NavigateMiniGameScene()
         {
             SaveSceneChangeData();
             InteractableObject.IsDialogShowing = false;
@@ -49,6 +55,20 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(_npcTrigger.MiniGameScene);
+        }
+
+        /// <summary>
+        /// Initializes the proper world variables before
+        /// resuming the game.
+        /// </summary>
+        private void RestoreGameState()
+        {
+            InteractableObject.IsDialogShowing = false;
+            _npcTrigger.Npc.Camera.enabled = false;
+            _npcTrigger.NpcFacePlayer.IsInteracted = false;
+            _npcTrigger.Npc.UiText.enabled = false;
+            _npcTrigger.TriggerInteracted = false;
+            Time.timeScale = 1f;
         }
     }
 }

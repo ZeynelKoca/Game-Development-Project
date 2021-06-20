@@ -27,6 +27,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
                     if (_npcTrigger.Npc.DialogDone)
                     {
+                        Interacted = false;
                         return _npcTrigger.NpcInteractionFinishedState;
                     }
                 }
@@ -50,7 +51,16 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                 var playerMovement = _player.GetComponent<PlayerMovementController>();
                 playerMovement.FaceDirection(_npcTrigger.NpcPatrol.transform.position);
                 _npcTrigger.NpcFacePlayer.FaceDirection(_npcTrigger.Npc.Camera.transform);
-                _npcTrigger.Npc.InitInitialDialog();
+
+                if (_npcTrigger.Npc.HasActiveQuest())
+                {
+                    _npcTrigger.Npc.StartInitialDialog();
+                }
+                else
+                {
+                    _npcTrigger.Npc.StartFinishedDialog();
+                }
+
                 Time.timeScale = 0f;
                 Interacted = true;
             }

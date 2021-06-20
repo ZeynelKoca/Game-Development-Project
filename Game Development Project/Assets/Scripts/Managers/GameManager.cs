@@ -163,10 +163,20 @@ namespace Assets.Scripts.Managers
         /// Initializes the proper variables and states for
         /// all the NPCs in the game.
         /// </summary>
-        /// <remarks>
-        /// Order of achievement checks directly reflects the order of npc interactibility.
-        /// </remarks>
         private void InitNpcs()
+        {
+            InitCurrentNpcWithQuest();
+            InitFinishedNpcQuests();
+        }
+
+        /// <summary>
+        /// Initializes the first Npc whose quest is currently
+        /// active for the player to complete.
+        /// </summary>
+        /// <remarks>
+        /// Order of achievement if-checks directly reflects the order of npc quests.
+        /// </remarks>
+        private void InitCurrentNpcWithQuest()
         {
             if (!AchievementsManager.Instance.PandaAchieved)
             {
@@ -182,6 +192,11 @@ namespace Assets.Scripts.Managers
             {
                 var bird = GameObject.FindGameObjectWithTag("BirdNPC");
                 ActivateNpc(bird);
+            }
+            else if (!AchievementsManager.Instance.SquirrelAchieved)
+            {
+                var squirrel = GameObject.FindGameObjectWithTag("SquirrelNPC");
+                ActivateNpc(squirrel);
             }
             else if (!AchievementsManager.Instance.DogAchieved)
             {
@@ -203,12 +218,60 @@ namespace Assets.Scripts.Managers
                 var penguin = GameObject.FindGameObjectWithTag("PenguinNPC");
                 ActivateNpc(penguin);
             }
-            else if (!AchievementsManager.Instance.SquirrelAchieved)
+            else if (!AchievementsManager.Instance.CrocodileAchieved)
+            {
+                var crocodile = GameObject.FindGameObjectWithTag("CrocodileNPC");
+                ActivateNpc(crocodile);
+            }
+        }
+
+        /// <summary>
+        /// Activates Npc interactibility of the Npc's whose
+        /// quest have already been completed by the player.
+        /// </summary>
+        private void InitFinishedNpcQuests()
+        {
+            if (AchievementsManager.Instance.PandaAchieved)
+            {
+                var panda = GameObject.FindGameObjectWithTag("PandaNPC");
+                ActivateNpc(panda);
+            }
+            if (AchievementsManager.Instance.BearAchieved)
+            {
+                var bear = GameObject.FindGameObjectWithTag("BearNPC");
+                ActivateNpc(bear);
+            }
+            if (AchievementsManager.Instance.BirdAchieved)
+            {
+                var bird = GameObject.FindGameObjectWithTag("BirdNPC");
+                ActivateNpc(bird);
+            }
+            if (AchievementsManager.Instance.SquirrelAchieved)
             {
                 var squirrel = GameObject.FindGameObjectWithTag("SquirrelNPC");
                 ActivateNpc(squirrel);
             }
-            else if (!AchievementsManager.Instance.CrocodileAchieved)
+            if (AchievementsManager.Instance.DogAchieved)
+            {
+                var dog = GameObject.FindGameObjectWithTag("DogNPC");
+                ActivateNpc(dog);
+            }
+            if (AchievementsManager.Instance.ElephantAchieved)
+            {
+                var elephant = GameObject.FindGameObjectWithTag("ElephantNPC");
+                ActivateNpc(elephant);
+            }
+            if (AchievementsManager.Instance.MonkeyAchieved)
+            {
+                var monkey = GameObject.FindGameObjectWithTag("MonkeyNPC");
+                ActivateNpc(monkey);
+            }
+            if (AchievementsManager.Instance.PenguinAchieved)
+            {
+                var penguin = GameObject.FindGameObjectWithTag("PenguinNPC");
+                ActivateNpc(penguin);
+            }
+            if (AchievementsManager.Instance.CrocodileAchieved)
             {
                 var crocodile = GameObject.FindGameObjectWithTag("CrocodileNPC");
                 ActivateNpc(crocodile);
