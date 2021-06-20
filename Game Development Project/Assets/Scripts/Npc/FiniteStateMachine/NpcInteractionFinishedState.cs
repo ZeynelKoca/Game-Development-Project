@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Npc.FiniteStateMachine
@@ -18,7 +19,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
             if (_npcTrigger.Npc.HasActiveQuest())
             {
-                if (_npcTrigger.MiniGameScene.SceneAsset != null)
+                if (_npcTrigger.MiniGameScene.SceneName != String.Empty)
                 {
                     NavigateMiniGameScene();
                 }

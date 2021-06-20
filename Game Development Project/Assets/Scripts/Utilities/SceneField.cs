@@ -14,7 +14,6 @@ namespace Assets.Scripts.Utilities
         [SerializeField] private string _sceneName = String.Empty;
 
         public string SceneName => _sceneName;
-        public Object SceneAsset => _sceneAsset;
 
         // makes it work with the existing Unity methods (LoadLevel/LoadScene)
         public static implicit operator string(SceneField sceneField)
