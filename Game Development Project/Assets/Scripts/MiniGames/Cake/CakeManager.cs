@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,9 +20,8 @@ namespace Assets.Scripts.MiniGames.Cake
 
         void Awake()
         {
-            // TODO: Add voice over audio and change # seconds according to the audio duration.
             SubscribeToExternalEvents();
-            StartCoroutine(UiController.DisableMiniGameFor(4f));
+            StartCoroutine(UiController.DisableMiniGameFor(2f));
 
             // Initializes the sfx volume
             UpdateSfxVolume(null, null);
@@ -100,20 +98,7 @@ namespace Assets.Scripts.MiniGames.Cake
         private void CloseMiniGame()
         {
             StartCoroutine(UiController.MiniGameFinished(2f));
-            AssignAchievement();
             UnsubscribeFromExternalEvents();
-        }
-
-        /// <summary>
-        /// Assigns the achievement for completing the
-        /// quest of current NPC to the player.
-        /// </summary>
-        private void AssignAchievement()
-        {
-            if (!AchievementsManager.Instance.CrocodileAchieved)
-            {
-                AchievementsManager.Instance.CrocodileAchieved = true;
-            }
         }
 
         /// <summary>

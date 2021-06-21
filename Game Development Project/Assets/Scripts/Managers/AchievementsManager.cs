@@ -223,6 +223,13 @@ namespace Assets.Scripts.Managers
         public void ResetAllAchievements()
         {
             PandaAchieved = false;
+            BearAchieved = false;
+            BirdAchieved = false;
+            DogAchieved = false;
+            ElephantAchieved = false;
+            MonkeyAchieved = false;
+            PenguinAchieved = false;
+            SquirrelAchieved = false;
             CrocodileAchieved = false;
         }
     }

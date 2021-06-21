@@ -68,6 +68,13 @@ namespace Assets.Scripts
         private void UpdateAllAchievements()
         {
             UpdatePandaAchievement();
+            UpdateBearAchievement();
+            UpdateBirdAchievement();
+            UpdateDogAchievement();
+            UpdateElephantAchievement();
+            UpdateMonkeyAchievement();
+            UpdatePenguinAchievement();
+            UpdateSquirrelAchievement();
             UpdateCrocodileAchievement();
         }
 

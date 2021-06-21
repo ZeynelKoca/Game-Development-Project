@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3511759452044139503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4884095788822486043}
+  - component: {fileID: 9179743000399379199}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4884095788822486043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511759452044139503}
+  m_LocalRotation: {x: 0.17788765, y: -0.49013966, z: 0.102931276, w: 0.847068}
+  m_LocalPosition: {x: 37.800003, y: 24.300001, z: -25.050001}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children: []
+  m_Father: {fileID: 5184067051355190259}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 23.72, y: -60.11, z: 0}
+--- !u!20 &9179743000399379199
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511759452044139503}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &3546473417987723664
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3678683898680758659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.34, y: 5.66, z: 0}
+  m_LocalPosition: {x: -0.15, y: 2.03, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 548029668350569100}
@@ -159,6 +233,7 @@ Transform:
   - {fileID: 5729059998463951531}
   - {fileID: 7464857466327802572}
   - {fileID: 8828216367844427747}
+  - {fileID: 4884095788822486043}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -210,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 3
   PatrolWaitTime: 3
-  CameraTransform: {fileID: 0}
+  CameraTransform: {fileID: 4884095788822486043}
   PatrolSpots:
   - {fileID: 0}
   - {fileID: 0}
@@ -226,7 +301,7 @@ GameObject:
   - component: {fileID: 3069314097939872767}
   m_Layer: 0
   m_Name: BearInteractable
-  m_TagString: Untagged
+  m_TagString: BearNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,8 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c099235e92ebce24ba70213dc1e45e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NpcType: 0
-  Camera: {fileID: 0}
+  NpcType: 1
+  Camera: {fileID: 9179743000399379199}
   InteractText: {fileID: 6668780669240876302}
   DialogText:
   - Hello there!
@@ -557,12 +632,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 82a210470febe864da40ba64b663639b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.99166673
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 82a210470febe864da40ba64b663639b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 82a210470febe864da40ba64b663639b,
         type: 3}

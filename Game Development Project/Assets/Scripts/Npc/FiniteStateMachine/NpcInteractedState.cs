@@ -19,15 +19,16 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             InitTriggerData();
 
-            if (_npcTrigger.GamePaused && !PauseMenuController.GamePausedState && Input.anyKeyDown)
+            if (_npcTrigger.TriggerInteracted && !PauseMenuController.GamePausedState && Input.anyKeyDown)
             {
                 if (!Input.GetKeyDown(KeyCode.P) && !Input.GetKeyDown(KeyCode.Escape))
                 {
-                    _npcTrigger.Npc.Talk(_npcTrigger.Text);
+                    _npcTrigger.Npc.DisplayDialogSentence();
 
                     if (_npcTrigger.Npc.DialogDone)
                     {
-                        return _npcTrigger.NpcCompletedState;
+                        Interacted = false;
+                        return _npcTrigger.NpcInteractionFinishedState;
                     }
                 }
             }
@@ -44,13 +45,22 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
             if (!Interacted)
             {
                 _npcTrigger.Npc.InteractText.SetActive(false);
-                _npcTrigger.Text.enabled = true;
-                _npcTrigger.GamePaused = true;
+                _npcTrigger.Npc.UiText.enabled = true;
+                _npcTrigger.TriggerInteracted = true;
                 _npcTrigger.Npc.Camera.enabled = true;
                 var playerMovement = _player.GetComponent<PlayerMovementController>();
                 playerMovement.FaceDirection(_npcTrigger.NpcPatrol.transform.position);
                 _npcTrigger.NpcFacePlayer.FaceDirection(_npcTrigger.Npc.Camera.transform);
-                _npcTrigger.Npc.InitDialog(_npcTrigger.Text);
+
+                if (_npcTrigger.Npc.HasActiveQuest())
+                {
+                    _npcTrigger.Npc.StartInitialDialog();
+                }
+                else
+                {
+                    _npcTrigger.Npc.StartFinishedDialog();
+                }
+
                 Time.timeScale = 0f;
                 Interacted = true;
             }

@@ -13,9 +13,12 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
-            _npcTrigger.ExclamationMark.SetActive(true);
+            if (_npcTrigger.Npc.HasActiveQuest())
+            {
+                _npcTrigger.ExclamationMark.SetActive(true);
+            }
 
-            if (_npcTrigger.IsTriggerActive && !_npcTrigger.GamePaused)
+            if (_npcTrigger.IsTriggerActive && !_npcTrigger.TriggerInteracted)
             {
                 _npcTrigger.Npc.InteractText.SetActive(true);
 
