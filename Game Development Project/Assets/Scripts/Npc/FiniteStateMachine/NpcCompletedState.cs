@@ -1,13 +1,17 @@
 ﻿using System;
 using Assets.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Npc.FiniteStateMachine
 {
     public class NpcCompletedState : INpcState
     {
+        public bool TransitionedFromMiniGame { get; set; }
+
         private readonly NpcTrigger _npcTrigger;
+
+        private bool _triggerDataInitialized;
+        private bool _gameStateRestored;
 
         public NpcCompletedState(NpcTrigger npcTrigger)
         {
@@ -16,24 +20,47 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
-            // TODO: Set next NPC (InteractableObject.Interactable) to True.
+            if (TransitionedFromMiniGame)
+            {
+                InitTriggerData();
 
-            _npcTrigger.ExclamationMark.SetActive(false);
-            SavePlayerTransformData();
+                if (_npcTrigger.TriggerInteracted && !PauseMenuController.GamePausedState && Input.anyKeyDown)
+                {
+                    if (!Input.GetKeyDown(KeyCode.P) && !Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        _npcTrigger.Npc.DisplayDialogSentence();
+
+                        if (_npcTrigger.Npc.DialogDone)
+                        {
+                            AssignAchievement();
+                            return _npcTrigger.NpcIdleState;
+                        }
+                    }
+                }
+                return _npcTrigger.NpcCompletedState;
+            }
+
             AssignAchievement();
-            //NavigateMiniGameScene();
-
-            return _npcTrigger.NpcCompletedState;
+            return _npcTrigger.NpcIdleState;
         }
 
         /// <summary>
-        /// Saves the player's current transform data into <see cref="SceneChangeSaveData"/>.
+        /// Initializes the proper variables for the game before executing
+        /// the actual state's action.
         /// </summary>
-        private void SavePlayerTransformData()
+        private void InitTriggerData()
         {
-            var playerGameObject = GameObject.FindGameObjectWithTag("Player");
-            SceneChangeSaveData.MainCharacterPosition = playerGameObject.transform.position;
-            SceneChangeSaveData.MainCharacterRotation = playerGameObject.transform.rotation;
+            if (!_triggerDataInitialized)
+            {
+                _npcTrigger.Npc.InteractText.SetActive(false);
+                _npcTrigger.Npc.UiText.enabled = true;
+                _npcTrigger.TriggerInteracted = true;
+                _npcTrigger.Npc.Camera.enabled = true;
+                _npcTrigger.NpcFacePlayer.FaceDirection(_npcTrigger.Npc.Camera.transform);
+                _npcTrigger.Npc.StartMiniGameAchievedDialog();
+                Time.timeScale = 0f;
+                _triggerDataInitialized = true;
+            }
         }
 
         /// <summary>
@@ -48,10 +75,61 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                     if (!AchievementsManager.Instance.PandaAchieved)
                     {
                         AchievementsManager.Instance.PandaAchieved = true;
-                        RestoreGameState();
                     }
                     break;
+                case NpcType.Bear:
+                    if (!AchievementsManager.Instance.BearAchieved)
+                    {
+                        AchievementsManager.Instance.BearAchieved = true;
+                    }
+                    break;
+                case NpcType.Bird:
+                    if (!AchievementsManager.Instance.BirdAchieved)
+                    {
+                        AchievementsManager.Instance.BirdAchieved = true;
+                    }
+                    break;
+                case NpcType.Dog:
+                    if (!AchievementsManager.Instance.DogAchieved)
+                    {
+                        AchievementsManager.Instance.DogAchieved = true;
+                    }
+                    break;
+                case NpcType.Elephant:
+                    if (!AchievementsManager.Instance.ElephantAchieved)
+                    {
+                        AchievementsManager.Instance.ElephantAchieved = true;
+                    }
+                    break;
+                case NpcType.Monkey:
+                    if (!AchievementsManager.Instance.MonkeyAchieved)
+                    {
+                        AchievementsManager.Instance.MonkeyAchieved = true;
+                    }
+                    break;
+                case NpcType.Penguin:
+                    if (!AchievementsManager.Instance.PenguinAchieved)
+                    {
+                        AchievementsManager.Instance.PenguinAchieved = true;
+                    }
+                    break;
+                case NpcType.Squirrel:
+                    if (!AchievementsManager.Instance.SquirrelAchieved)
+                    {
+                        AchievementsManager.Instance.SquirrelAchieved = true;
+                    }
+                    break;
+                case NpcType.Crocodile:
+                    if (!AchievementsManager.Instance.CrocodileAchieved)
+                    {
+                        AchievementsManager.Instance.CrocodileAchieved = true;
+                    }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
+
+            RestoreGameState();
         }
 
         /// <summary>
@@ -60,26 +138,56 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         /// </summary>
         private void RestoreGameState()
         {
-            InteractableObject.IsDialogShowing = false;
-            _npcTrigger.Npc.Camera.enabled = false;
-            _npcTrigger.Text.enabled = false;
-            _npcTrigger.GamePaused = false;
-            Time.timeScale = 1f;
+            if (!_gameStateRestored)
+            {
+                ActivateNextNpc();
+                InteractableObject.IsDialogShowing = false;
+                _npcTrigger.Npc.Camera.enabled = false;
+                _npcTrigger.NpcFacePlayer.IsInteracted = false;
+                _npcTrigger.Npc.UiText.enabled = false;
+                _npcTrigger.TriggerInteracted = false;
+                Time.timeScale = 1f;
+                TransitionedFromMiniGame = false;
+                _gameStateRestored = true;
+            }
         }
 
         /// <summary>
-        /// Loads the NPCs mini-game scene.
+        /// Activates the interactibility of the next npc
+        /// so the player can start working on the next achievement.
         /// </summary>
-        //public void NavigateMiniGameScene()
-        //{
-        //    if (_npcTrigger.MiniGameScene.SceneName != String.Empty)
-        //    {
-        //        InteractableObject.IsDialogShowing = false;
-        //        // Game is not in paused state when in the main menu, but you still want to be able to use the Cursor.
-        //        Cursor.visible = true;
-        //        Cursor.lockState = CursorLockMode.None;
-        //        SceneManager.LoadScene(_npcTrigger.MiniGameScene);
-        //    }
-        //}
+        private void ActivateNextNpc()
+        {
+            var npcGameObject = GetNpcGameObject(_npcTrigger.Npc.NextQuestNpcType);
+            var npcInteractableObject = npcGameObject.GetComponent<InteractableObject>();
+            npcInteractableObject.Interactable = true;
+        }
+
+        private GameObject GetNpcGameObject(NpcType npcType)
+        {
+            switch (npcType)
+            {
+                case NpcType.Panda:
+                    return GameObject.FindGameObjectWithTag("PandaNPC");
+                case NpcType.Bear:
+                    return GameObject.FindGameObjectWithTag("BearNPC");
+                case NpcType.Bird:
+                    return GameObject.FindGameObjectWithTag("BirdNPC");
+                case NpcType.Dog:
+                    return GameObject.FindGameObjectWithTag("DogNPC");
+                case NpcType.Elephant:
+                    return GameObject.FindGameObjectWithTag("ElephantNPC");
+                case NpcType.Monkey:
+                    return GameObject.FindGameObjectWithTag("MonkeyNPC");
+                case NpcType.Penguin:
+                    return GameObject.FindGameObjectWithTag("PenguinNPC");
+                case NpcType.Squirrel:
+                    return GameObject.FindGameObjectWithTag("SquirrelNPC");
+                case NpcType.Crocodile:
+                    return GameObject.FindGameObjectWithTag("CrocodileNPC");
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(npcType), npcType, null);
+            }
+        }
     }
 }

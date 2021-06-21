@@ -2,6 +2,14 @@
 {
     public enum NpcType
     {
-        Panda
+        Panda,
+        Bear,
+        Bird,
+        Dog,
+        Elephant,
+        Monkey,
+        Penguin,
+        Squirrel,
+        Crocodile
     }
 }

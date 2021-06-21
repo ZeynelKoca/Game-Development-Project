@@ -13,12 +13,14 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
-            _npcTrigger.ExclamationMark.SetActive(true);
-
-            if (_npcTrigger.IsTriggerActive && !_npcTrigger.GamePaused)
+            if (_npcTrigger.Npc.HasActiveQuest())
             {
-                _npcTrigger.Text.text = "Press E to interact";
-                _npcTrigger.Text.enabled = true;
+                _npcTrigger.ExclamationMark.SetActive(true);
+            }
+
+            if (_npcTrigger.IsTriggerActive && !_npcTrigger.TriggerInteracted)
+            {
+                _npcTrigger.Npc.InteractText.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {

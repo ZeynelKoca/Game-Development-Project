@@ -1,16 +1,15 @@
 ﻿using Assets.Scripts.Npc.FiniteStateMachine;
 using Assets.Scripts.Utilities;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.Npc
 {
     public class NpcTrigger : MonoBehaviour
     {
-        //public SceneField MiniGameScene;
+        public NpcFacePlayer NpcFacePlayer;
+        public SceneField MiniGameScene;
         public NpcPatrol NpcPatrol;
         public InteractableObject Npc;
-        public Text Text;
         public GameObject ExclamationMark;
 
         #region States
@@ -19,18 +18,19 @@ namespace Assets.Scripts.Npc
         public NpcIdleState NpcIdleState;
         public NpcInteractableState NpcInteractableState;
         public NpcInteractedState NpcInteractedState;
+        public NpcInteractionFinishedState NpcInteractionFinishedState;
         public NpcCompletedState NpcCompletedState;
 
         #endregion
 
-        public bool GamePaused { get; set; }
+        public bool TriggerInteracted { get; set; }
         public bool IsTriggerActive { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             InitStates();
             Npc.Camera.enabled = false;
-            GamePaused = false;
+            TriggerInteracted = false;
             IsTriggerActive = false;
         }
 
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Npc
         {
             if (!IsTriggerActive)
             {
-                Text.enabled = false;
+                Npc.InteractText.SetActive(false);
             }
 
             // Execute the current state action and store the upcoming (transition) state to be called in the next Update loop.
@@ -69,20 +69,11 @@ namespace Assets.Scripts.Npc
             NpcIdleState = new NpcIdleState(this);
             NpcInteractableState = new NpcInteractableState(this);
             NpcInteractedState = new NpcInteractedState(this);
+            NpcInteractionFinishedState = new NpcInteractionFinishedState(this);
             NpcCompletedState = new NpcCompletedState(this);
 
             // Start the npc off with the idle state.
             CurrentNpcState = NpcIdleState;
-        }
-
-        /// <summary>
-        /// Calculates the new player position according to the location
-        /// of the npc and the set player position offset.
-        /// </summary>
-        /// <returns></returns>
-        public Vector3 CalculateNewPlayerPosition()
-        {
-            return Npc.Object.transform.position + Npc.PlayerPositionOffset;
         }
     }
 }
