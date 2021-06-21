@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8417917394605415824}
   m_Layer: 0
   m_Name: PolygonPattern
-  m_TagString: Untagged
+  m_TagString: Pattern
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

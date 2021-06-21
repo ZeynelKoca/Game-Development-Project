@@ -9,6 +9,7 @@ TagManager:
   - Achievements
   - Wall
   - Tree
+  - Pattern
   layers:
   - Default
   - TransparentFX
