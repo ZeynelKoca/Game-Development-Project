@@ -178,15 +178,15 @@ namespace Assets.Scripts.Managers
         /// </remarks>
         private void InitCurrentNpcWithQuest()
         {
-            if (!AchievementsManager.Instance.PandaAchieved)
-            {
-                var panda = GameObject.FindGameObjectWithTag("PandaNPC");
-                ActivateNpc(panda);
-            }
-            else if (!AchievementsManager.Instance.BearAchieved)
+            if (!AchievementsManager.Instance.BearAchieved)
             {
                 var bear = GameObject.FindGameObjectWithTag("BearNPC");
                 ActivateNpc(bear);
+            }
+            else if (!AchievementsManager.Instance.PandaAchieved)
+            {
+                var panda = GameObject.FindGameObjectWithTag("PandaNPC");
+                ActivateNpc(panda);
             }
             else if (!AchievementsManager.Instance.BirdAchieved)
             {
