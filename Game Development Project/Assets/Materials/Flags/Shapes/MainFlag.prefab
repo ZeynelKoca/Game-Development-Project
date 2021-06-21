@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3015754857451672484}
   - component: {fileID: 1026515435106871150}
   - component: {fileID: 7581157607246352682}
+  - component: {fileID: 7544857627739599604}
   m_Layer: 0
   m_Name: MainFlag
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530685289988589243}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -462981019419857548, guid: 7c2cfe413f40d53489270cdc62b92eed, type: 3}
 --- !u!23 &1026515435106871150
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93,7 +94,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainFlag: {fileID: 0}
-  SquareShape: {fileID: -462981019419857548, guid: b7f4a49c63a253241b644c60c3dbe0da,
+  SquareShape: {fileID: -462981019419857548, guid: bd632561e6565014ea085399b4ee32f1,
     type: 3}
   TriangleShape: {fileID: -462981019419857548, guid: 7c2cfe413f40d53489270cdc62b92eed,
     type: 3}
+  DecalPlacer: {fileID: 0}
+  buttons: []
+  TestText: {fileID: 0}
+--- !u!64 &7544857627739599604
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530685289988589243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: 7c2cfe413f40d53489270cdc62b92eed, type: 3}

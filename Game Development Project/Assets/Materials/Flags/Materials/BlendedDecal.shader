@@ -60,7 +60,7 @@ Shader "Custom/BlendedDecal"
 
 			Lighting Off
 			Cull Off
-			ZTest Off
+			ZTest On
 			ZWrite Off
 			Blend SrcAlpha OneMinusSrcAlpha
 			ColorMask[_ColorMask]
