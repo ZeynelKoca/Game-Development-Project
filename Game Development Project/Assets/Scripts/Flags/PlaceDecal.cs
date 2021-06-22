@@ -62,6 +62,8 @@ public class PlaceDecal : MonoBehaviour
     private void Start()
     {
         CurrentColor = Color.red;
+        _currentColor = "Red";
+        _currentShape = "Square";
         _currentPatern = RedSquarePrefab;       
     }
     // Update is called once per frame
@@ -75,7 +77,8 @@ public class PlaceDecal : MonoBehaviour
             {
                 MyShaderBehavior script = hit.collider.gameObject.GetComponent<MyShaderBehavior>();
                 if (null != script)
-                    script.PaintOn(hit.textureCoord, _currentPatern);
+                   
+                    script.PaintOn(hit.textureCoord2, _currentPatern);
             }
         }
     }
