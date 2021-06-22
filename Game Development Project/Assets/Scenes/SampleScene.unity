@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 9fc0d4010bbf28b4594072e72b8655ab
+  m_OcclusionCullingData: {fileID: 36300000, guid: fbd335ceb795a804494cc814b1ae3c4d,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -97,7 +98,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 32a586b780a784a479f3d6682d071d17,
+  m_LightingDataAsset: {fileID: 112000000, guid: 6534788c63d3283438e5f49fca0e24a0,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -121,7 +122,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: f13c83a65e0a5e74492054d594408ddf, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7ae4dd57eb14a154e8e436ce8abbeea3, type: 2}
 --- !u!1 &51729046
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +790,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595733451}
-  m_LocalRotation: {x: -0.0019642296, y: -0.06411889, z: -0.00012620413, w: 0.99794036}
+  m_LocalRotation: {x: -0.0019642303, y: -0.06411889, z: -0.00012620418, w: 0.99794036}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1190,7 +1191,7 @@ PrefabInstance:
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0009142846
+      value: -0.00091428834
       objectReference: {fileID: 0}
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
@@ -1200,7 +1201,7 @@ PrefabInstance:
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000058743848
+      value: -0.000058744088
       objectReference: {fileID: 0}
     - target: {fileID: 5231314860903208806, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
