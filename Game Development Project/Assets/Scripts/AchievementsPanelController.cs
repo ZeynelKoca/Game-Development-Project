@@ -40,6 +40,10 @@ namespace Assets.Scripts
         public Image SquirrelEnabledBadge;
         public Image SquirrelDisabledBadge;
 
+        [Header("Ostrich")]
+        public Image OstrichEnabledBadge;
+        public Image OstrichDisabledBadge;
+
         [Header("Crocodile")]
         public Image CrocodileEnabledBadge;
         public Image CrocodileDisabledBadge;
@@ -75,6 +79,7 @@ namespace Assets.Scripts
             UpdateMonkeyAchievement();
             UpdatePenguinAchievement();
             UpdateSquirrelAchievement();
+            UpdateOstrichAchievement();
             UpdateCrocodileAchievement();
         }
 
@@ -219,6 +224,24 @@ namespace Assets.Scripts
             {
                 SquirrelEnabledBadge.enabled = false;
                 SquirrelDisabledBadge.enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Updates the UI display of the ostrich achievement according
+        /// to the achieved state in <see cref="AchievementsManager"/>.
+        /// </summary>
+        private void UpdateOstrichAchievement()
+        {
+            if (AchievementsManager.Instance.OstrichAchieved)
+            {
+                OstrichEnabledBadge.enabled = true;
+                OstrichDisabledBadge.enabled = false;
+            }
+            else
+            {
+                OstrichEnabledBadge.enabled = false;
+                OstrichDisabledBadge.enabled = true;
             }
         }
 

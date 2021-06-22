@@ -170,6 +170,26 @@ namespace Assets.Scripts.Managers
 
         #endregion
 
+        #region OstrichAchievement
+
+        public event Action OnOstrichAchievementChanged;
+        protected virtual void OstrichAchievementChanged()
+        {
+            OnOstrichAchievementChanged?.Invoke();
+        }
+
+        public bool OstrichAchieved
+        {
+            get => PlayerPrefs.GetInt("OstrichAchieved", 0) == 1;
+            set
+            {
+                PlayerPrefs.SetInt("OstrichAchieved", value ? 1 : 0);
+                OstrichAchievementChanged();
+            }
+        }
+
+        #endregion
+
         #region CrocodileAchievement
 
         public event Action OnCrocodileAchievementChanged;
@@ -230,6 +250,7 @@ namespace Assets.Scripts.Managers
             MonkeyAchieved = false;
             PenguinAchieved = false;
             SquirrelAchieved = false;
+            OstrichAchieved = false;
             CrocodileAchieved = false;
         }
     }

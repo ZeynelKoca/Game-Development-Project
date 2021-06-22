@@ -120,6 +120,10 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                     }
                     break;
                 case NpcType.Crocodile:
+                    if (!AchievementsManager.Instance.OstrichAchieved)
+                    {
+                        AchievementsManager.Instance.OstrichAchieved = true;
+                    }
                     if (!AchievementsManager.Instance.CrocodileAchieved)
                     {
                         AchievementsManager.Instance.CrocodileAchieved = true;
