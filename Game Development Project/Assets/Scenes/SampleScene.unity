@@ -56,8 +56,8 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
-    m_BakeResolution: 40
-    m_AtlasSize: 1024
+    m_BakeResolution: 20
+    m_AtlasSize: 512
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -66,12 +66,12 @@ LightmapSettings:
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
-    m_TextureCompression: 0
+    m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 0
+    m_MixedBakeMode: 1
     m_BakeBackend: 2
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: a9bc2e7548c6c584dbc8457cfd50153e,
+  m_LightingDataAsset: {fileID: 112000000, guid: 32a586b780a784a479f3d6682d071d17,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -166,7 +166,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 200
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -528,10 +528,10 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.9
     m_Bias: 0.05
     m_NormalBias: 0
     m_NearPlane: 0.2
@@ -771,7 +771,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 200
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -789,7 +789,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595733451}
-  m_LocalRotation: {x: -0.0019642303, y: -0.06411889, z: -0.00012620418, w: 0.99794036}
+  m_LocalRotation: {x: -0.0019642296, y: -0.06411889, z: -0.00012620413, w: 0.99794036}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -845,7 +845,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 200
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -919,7 +919,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 200
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -937,7 +937,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999582052}
-  m_LocalRotation: {x: 0.025061266, y: -0.0640988, z: 0.0016102172, w: 0.99762756}
+  m_LocalRotation: {x: 0.025061268, y: -0.06409879, z: 0.0016102172, w: 0.99762756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1190,7 +1190,7 @@ PrefabInstance:
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00091428834
+      value: -0.0009142846
       objectReference: {fileID: 0}
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
@@ -1200,7 +1200,7 @@ PrefabInstance:
     - target: {fileID: 5231314860903208801, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000058744088
+      value: -0.000058743848
       objectReference: {fileID: 0}
     - target: {fileID: 5231314860903208806, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
@@ -1210,7 +1210,7 @@ PrefabInstance:
     - target: {fileID: 5231314860903208806, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
       propertyPath: far clip plane
-      value: 5000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5231314860903208806, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}
@@ -1226,6 +1226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player object
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231314861324140657, guid: 75032dd273b5f9242a7925744f4ece86,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5231314861324140658, guid: 75032dd273b5f9242a7925744f4ece86,
         type: 3}

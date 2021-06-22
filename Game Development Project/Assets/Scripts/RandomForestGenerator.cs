@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Assets.Scripts
 {
@@ -43,6 +44,14 @@ namespace Assets.Scripts
                             newElement.transform.eulerAngles = rotation;
                             newElement.transform.localScale = scale;
 
+                            var mesh = newElement.GetComponent<MeshRenderer>();
+                            if (mesh != null)
+                            {
+                                mesh.shadowCastingMode = !element.UseShadows ? ShadowCastingMode.Off : ShadowCastingMode.On;
+                            }
+
+                            newElement.isStatic = true;
+
                             // Break out of this for loop to ensure we don't place another element at this position.
                             break;
                         }
@@ -56,11 +65,12 @@ namespace Assets.Scripts
     public class Element
     {
         public string Name;
+        public bool UseShadows;
         [Range(1, 10)]
         public int Density;
-        [Range(0.1f, 1.0f)] 
+        [Range(0.1f, 1.0f)]
         public float MinScale;
-        [Range(0.1f, 1.0f)] 
+        [Range(0.1f, 1.0f)]
         public float MaxScale;
 
 
