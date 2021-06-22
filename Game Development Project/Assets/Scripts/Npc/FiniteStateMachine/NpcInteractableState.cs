@@ -20,7 +20,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
             if (_npcTrigger.IsTriggerActive && !_npcTrigger.TriggerInteracted)
             {
-                _npcTrigger.Npc.InteractText.SetActive(true);
+                _npcTrigger.Npc.InteractText.enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {

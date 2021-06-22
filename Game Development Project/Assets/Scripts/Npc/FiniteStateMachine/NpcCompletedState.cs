@@ -52,7 +52,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             if (!_triggerDataInitialized)
             {
-                _npcTrigger.Npc.InteractText.SetActive(false);
+                _npcTrigger.Npc.InteractText.enabled = false;
                 _npcTrigger.Npc.UiText.enabled = true;
                 _npcTrigger.TriggerInteracted = true;
                 _npcTrigger.Npc.Camera.enabled = true;

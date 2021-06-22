@@ -47,16 +47,12 @@ namespace Assets.Scripts.Npc
             if (other.CompareTag("Player"))
             {
                 IsTriggerActive = false;
+                Npc.InteractText.enabled = false;
             }
         }
 
         public void Update()
         {
-            if (!IsTriggerActive)
-            {
-                Npc.InteractText.SetActive(false);
-            }
-
             // Execute the current state action and store the upcoming (transition) state to be called in the next Update loop.
             CurrentNpcState = CurrentNpcState.ExecuteState();
         }
