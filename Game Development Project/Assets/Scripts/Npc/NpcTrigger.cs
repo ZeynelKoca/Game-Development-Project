@@ -6,6 +6,8 @@ namespace Assets.Scripts.Npc
 {
     public class NpcTrigger : MonoBehaviour
     {
+        public static bool AnyNpcTriggerActive;
+
         public NpcFacePlayer NpcFacePlayer;
         public SceneField MiniGameScene;
         public NpcPatrol NpcPatrol;
@@ -38,7 +40,12 @@ namespace Assets.Scripts.Npc
         {
             if (other.CompareTag("Player"))
             {
-                IsTriggerActive = true;
+                if (!AnyNpcTriggerActive)
+                {
+                    IsTriggerActive = true;
+                }
+
+                AnyNpcTriggerActive = true;
             }
         }
 
@@ -46,6 +53,7 @@ namespace Assets.Scripts.Npc
         {
             if (other.CompareTag("Player"))
             {
+                AnyNpcTriggerActive = false;
                 IsTriggerActive = false;
                 Npc.InteractText.enabled = false;
             }
