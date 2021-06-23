@@ -11,7 +11,7 @@
 
         public INpcState ExecuteState()
         {
-            _npcTrigger.Npc.InteractText.SetActive(false);
+            _npcTrigger.Npc.InteractText.enabled = false;
 
             if (_npcTrigger.Npc.Interactable)
             {

@@ -52,7 +52,7 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             if (!_triggerDataInitialized)
             {
-                _npcTrigger.Npc.InteractText.SetActive(false);
+                _npcTrigger.Npc.InteractText.enabled = false;
                 _npcTrigger.Npc.UiText.enabled = true;
                 _npcTrigger.TriggerInteracted = true;
                 _npcTrigger.Npc.Camera.enabled = true;
@@ -120,6 +120,10 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
                     }
                     break;
                 case NpcType.Crocodile:
+                    if (!AchievementsManager.Instance.OstrichAchieved)
+                    {
+                        AchievementsManager.Instance.OstrichAchieved = true;
+                    }
                     if (!AchievementsManager.Instance.CrocodileAchieved)
                     {
                         AchievementsManager.Instance.CrocodileAchieved = true;

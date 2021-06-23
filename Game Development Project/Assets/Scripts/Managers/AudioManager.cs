@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
@@ -7,6 +8,7 @@ namespace Assets.Scripts.Managers
         public static AudioManager Instance;
 
         private AudioSource _audioSource;
+        private bool _checkingAudio;
 
         void Awake()
         {
@@ -31,8 +33,23 @@ namespace Assets.Scripts.Managers
         // Update is called once per frame
         void Update()
         {
-            // Decrease the audio volume when the game is paused.
-            _audioSource.volume = PauseMenuController.GamePausedState ? 0.5f : 1f;
+            StartCoroutine(CheckGamePausedState());
+        }
+
+        /// <summary>
+        /// Checks whether the game is currently paused and if so,
+        /// decreases the audio volume accordingly.
+        /// </summary>
+        private IEnumerator CheckGamePausedState()
+        {
+            // Check to prevent call-stacking through Couroutines.
+            if (!_checkingAudio)
+            {
+                _checkingAudio = true;
+                yield return new WaitForSeconds(2f);
+                _audioSource.volume = PauseMenuController.GamePausedState ? 0.5f : 1f;
+                _checkingAudio = false;
+            }
         }
     }
 }
