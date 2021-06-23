@@ -44,11 +44,12 @@ namespace Assets.Scripts
                             newElement.transform.eulerAngles = rotation;
                             newElement.transform.localScale = scale;
 
-                            var mesh = newElement.GetComponent<MeshRenderer>();
+                            var mesh = newElement.GetComponentInChildren<MeshRenderer>();
                             if (mesh != null)
                             {
                                 mesh.shadowCastingMode = !element.UseShadows ? ShadowCastingMode.Off : ShadowCastingMode.On;
                             }
+
 
                             newElement.isStatic = true;
 
