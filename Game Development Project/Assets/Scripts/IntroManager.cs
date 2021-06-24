@@ -36,12 +36,27 @@ public class IntroManager : MonoBehaviour
     {
         if(VideoPlayer.time >= VideoPlayer.length - 1)
         {
-            VideoPlayer.Pause();
-            RawImage raw = GetComponent<RawImage>();
-            raw.color = Color.black;
-            enabled = false;
-            AudioManager.Instance.ToggleAudioSourceMute(false);
-            SceneManager.LoadScene("SampleScene");
+            CloseIntroCutScene();
+            
         }
-    } 
+#if DEBUG
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseIntroCutScene();
+        }
+#endif
+    }
+
+    /// <summary>
+    /// Closes the intro scene and opens the Village scene.
+    /// </summary>
+    private void CloseIntroCutScene()
+    {
+        VideoPlayer.Pause();
+        RawImage raw = GetComponent<RawImage>();
+        raw.color = Color.black;
+        enabled = false;
+        AudioManager.Instance.ToggleAudioSourceMute(false);
+        SceneManager.LoadScene("SampleScene");
+    }
 }
