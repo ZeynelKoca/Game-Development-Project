@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ namespace Assets.Scripts.Npc
 
         public NpcType NpcType;
         public NpcType NextQuestNpcType;
+        public Animator[] AchievementAnimators;
         public Camera Camera;
         public GameObject InteractButton;
         public Text UiText;
@@ -18,6 +20,7 @@ namespace Assets.Scripts.Npc
         public string[] MiniGameAchievedDialog;
         public string[] FinishedDialog;
 
+        private AudioSource _achievementAudioSource;
         private string[] _currentDialogText;
         private int _currentDialogIndex;
         private bool _dialogInitialized;
@@ -25,6 +28,44 @@ namespace Assets.Scripts.Npc
         public bool Interactable { get; set; }
 
         public bool DialogDone { get; private set; }
+
+        void Start()
+        {
+            _achievementAudioSource = GetComponent<AudioSource>();
+
+            UpdateSfxVolume(null, null);
+            SubscribeToExternalEvents();
+        }
+
+        void OnDestroy()
+        {
+            UnsubscribeFromExternalEvents();
+        }
+
+        /// <summary>
+        /// Subscribes to all external events.
+        /// </summary>
+        private void SubscribeToExternalEvents()
+        {
+            Settings.OnVolumeChanged += UpdateSfxVolume;
+        }
+
+        /// <summary>
+        /// Unsubscribes from all external events.
+        /// </summary>
+        private void UnsubscribeFromExternalEvents()
+        {
+            Settings.OnVolumeChanged -= UpdateSfxVolume;
+        }
+
+        /// <summary>
+        /// Updates the volume of achievement sound effect
+        /// according to the player's volume setting.
+        /// </summary>
+        private void UpdateSfxVolume(object sender, EventArgs e)
+        {
+            _achievementAudioSource.volume = Settings.VolumeSetting;
+        }
 
         /// <summary>
         /// Sets the proper sentence(s) of the dialog on the UI Text.
@@ -129,6 +170,35 @@ namespace Assets.Scripts.Npc
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        /// <summary>
+        /// Starts the achievement animation for all animators
+        /// in <see cref="AchievementAnimators"/> and their SFX.
+        /// </summary>
+        public void StartAchievementBadgeAnimation()
+        {
+            float totalWaitTime = 0.5f;
+
+            foreach (var achievement in AchievementAnimators)
+            {
+                StartCoroutine(DoBadgeAnimation(achievement, totalWaitTime));
+                StartCoroutine(DoAchievementSound(totalWaitTime + 0.15f));
+
+                totalWaitTime += 2.5f;
+            }
+        }
+
+        private IEnumerator DoBadgeAnimation(Animator badgeAnimator, float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            badgeAnimator.SetBool("DoAnimation", true);
+        }
+
+        private IEnumerator DoAchievementSound(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            _achievementAudioSource.Play();
         }
     }
 }

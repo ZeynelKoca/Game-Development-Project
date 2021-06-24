@@ -69,6 +69,8 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         /// </summary>
         private void AssignAchievement()
         {
+            _npcTrigger.Npc.StartAchievementBadgeAnimation();
+
             switch (_npcTrigger.Npc.NpcType)
             {
                 case NpcType.Panda:
