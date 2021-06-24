@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CakeMinigame.unity
     guid: ca939dc0eb15cfc498da403416a8374c
+  - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: 55e257119a901ff4cba22797ce7f9255
   m_configObjects: {}

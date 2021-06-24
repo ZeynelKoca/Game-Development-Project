@@ -8,7 +8,6 @@ namespace Assets.Scripts.Managers
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
-
         void Awake()
         {
             CreateSingleton();
