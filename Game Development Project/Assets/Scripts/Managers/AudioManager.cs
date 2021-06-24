@@ -36,6 +36,10 @@ namespace Assets.Scripts.Managers
             StartCoroutine(CheckGamePausedState());
         }
 
+        public void ToggleAudioSourceMute(bool mute)
+        {
+            _audioSource.mute = mute;
+        }
         /// <summary>
         /// Checks whether the game is currently paused and if so,
         /// decreases the audio volume accordingly.

@@ -796,7 +796,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: cf536aff2acfdae40b2d5eccdd70704d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1023,6 +1023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedd035d11f663248b40709137f5e5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: {fileID: 1814688752}
 --- !u!1 &1963297736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1380,7 @@ PrefabInstance:
     - target: {fileID: 504486777537698624, guid: 993f7de673c304641a23b9441eceab70,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 504486777537698624, guid: 993f7de673c304641a23b9441eceab70,
         type: 3}
@@ -1508,7 +1509,7 @@ PrefabInstance:
     - target: {fileID: 8881729246691678988, guid: c082e44d94241614a9750c487a61cbcc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8881729246691678988, guid: c082e44d94241614a9750c487a61cbcc,
         type: 3}
