@@ -6,7 +6,7 @@ namespace Assets.Scripts
     public class MainMenuController : MonoBehaviour
     {
         public AudioSource Source;
-        private bool _introPlayed;
+        private static bool _introPlayed;
         /// <summary>
         /// Starts the first game play related scene.
         /// </summary>

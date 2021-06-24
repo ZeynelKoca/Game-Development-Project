@@ -205,7 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260b78da8cfcebb42bd897f0ca42f544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Source: {fileID: 762071694693539365, guid: 8d3f81efedd4d0c4f852a67f4293d3d3, type: 3}
   VideoPlayer: {fileID: 286834406}
   RenderTexture: {fileID: 8400000, guid: d3597219933d3a342adbef0cf1ba8f28, type: 2}
 --- !u!1 &190852229
@@ -407,8 +406,8 @@ Camera:
   m_GameObject: {fileID: 893891485}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

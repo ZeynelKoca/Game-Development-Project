@@ -20,21 +20,28 @@ public class IntroManager : MonoBehaviour
     {
         RenderTexture render = new RenderTexture(RenderTexture)
         {
-            height = Screen.height,
-            width = Screen.width
+            height = Screen.currentResolution.height,
+            width = Screen.currentResolution.width
         };
         RawImage raw = GetComponent<RawImage>();
         raw.texture = render;
         VideoPlayer.targetTexture = render;
-        VideoPlayer.loopPointReached += EndReached;
         float test = PlayerPrefs.GetFloat("SoundVolume");
         VideoPlayer.SetDirectAudioVolume(0,PlayerPrefs.GetFloat("SoundVolume"));
         AudioManager.Instance.ToggleAudioSourceMute(true);
+    
     }
 
-    private void EndReached(VideoPlayer source)
+    private void Update()
     {
-        AudioManager.Instance.ToggleAudioSourceMute(false);
-        SceneManager.LoadScene("SampleScene");
-    }
+        if(VideoPlayer.time >= VideoPlayer.length - 1)
+        {
+            VideoPlayer.Pause();
+            RawImage raw = GetComponent<RawImage>();
+            raw.color = Color.black;
+            enabled = false;
+            AudioManager.Instance.ToggleAudioSourceMute(false);
+            SceneManager.LoadScene("SampleScene");
+        }
+    } 
 }
