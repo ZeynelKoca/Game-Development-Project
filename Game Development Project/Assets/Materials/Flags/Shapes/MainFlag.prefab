@@ -94,13 +94,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainFlag: {fileID: 0}
+  SquareCollider: {fileID: 0}
+  TriangleCollider: {fileID: 0}
   SquareShape: {fileID: -462981019419857548, guid: bd632561e6565014ea085399b4ee32f1,
     type: 3}
   TriangleShape: {fileID: -462981019419857548, guid: 7c2cfe413f40d53489270cdc62b92eed,
     type: 3}
   DecalPlacer: {fileID: 0}
   buttons: []
-  TestText: {fileID: 0}
 --- !u!64 &7544857627739599604
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -114,4 +115,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: 7c2cfe413f40d53489270cdc62b92eed, type: 3}
+  m_Mesh: {fileID: 4579454407841743219, guid: 7c2cfe413f40d53489270cdc62b92eed, type: 3}
