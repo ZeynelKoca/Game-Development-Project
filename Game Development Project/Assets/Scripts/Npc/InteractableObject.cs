@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using Assets.Scripts.Managers;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +14,7 @@ namespace Assets.Scripts.Npc
         public NpcType NextQuestNpcType;
         public Animator[] AchievementAnimators;
         public Camera Camera;
-        public TextMeshPro InteractText;
+        public GameObject InteractButton;
         public Text UiText;
         public string[] InitialDialog;
         public string[] MiniGameAchievedDialog;
