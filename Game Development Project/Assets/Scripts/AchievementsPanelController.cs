@@ -48,6 +48,51 @@ namespace Assets.Scripts
         public Image CrocodileEnabledBadge;
         public Image CrocodileDisabledBadge;
 
+        void Start()
+        {
+            SubscribeToExternalEvents();
+            InitAchievements();
+        }
+
+        void OnDestroy()
+        {
+            UnsubscribeFromExternalEvents();
+        }
+
+        /// <summary>
+        /// Subscribes to all external events.
+        /// </summary>
+        private void SubscribeToExternalEvents()
+        {
+            AchievementsManager.Instance.OnBearAchievementChanged += UpdateBearAchievement;
+            AchievementsManager.Instance.OnPandaAchievementChanged += UpdatePandaAchievement;
+            AchievementsManager.Instance.OnBirdAchievementChanged += UpdateBirdAchievement;
+            AchievementsManager.Instance.OnSquirrelAchievementChanged += UpdateSquirrelAchievement;
+            AchievementsManager.Instance.OnDogAchievementChanged += UpdateDogAchievement;
+            AchievementsManager.Instance.OnElephantAchievementChanged += UpdateElephantAchievement;
+            AchievementsManager.Instance.OnMonkeyAchievementChanged += UpdateMonkeyAchievement;
+            AchievementsManager.Instance.OnPenguinAchievementChanged += UpdatePenguinAchievement;
+            AchievementsManager.Instance.OnOstrichAchievementChanged += UpdateOstrichAchievement;
+            AchievementsManager.Instance.OnCrocodileAchievementChanged += UpdateCrocodileAchievement;
+        }
+
+        /// <summary>
+        /// Unsubscribes from all external events.
+        /// </summary>
+        private void UnsubscribeFromExternalEvents()
+        {
+            AchievementsManager.Instance.OnBearAchievementChanged -= UpdateBearAchievement;
+            AchievementsManager.Instance.OnPandaAchievementChanged -= UpdatePandaAchievement;
+            AchievementsManager.Instance.OnBirdAchievementChanged -= UpdateBirdAchievement;
+            AchievementsManager.Instance.OnSquirrelAchievementChanged -= UpdateSquirrelAchievement;
+            AchievementsManager.Instance.OnDogAchievementChanged -= UpdateDogAchievement;
+            AchievementsManager.Instance.OnElephantAchievementChanged -= UpdateElephantAchievement;
+            AchievementsManager.Instance.OnMonkeyAchievementChanged -= UpdateMonkeyAchievement;
+            AchievementsManager.Instance.OnPenguinAchievementChanged -= UpdatePenguinAchievement;
+            AchievementsManager.Instance.OnOstrichAchievementChanged -= UpdateOstrichAchievement;
+            AchievementsManager.Instance.OnCrocodileAchievementChanged -= UpdateCrocodileAchievement;
+        }
+
         /// <summary>
         /// Activates the achievements panel.
         /// </summary>
@@ -55,7 +100,6 @@ namespace Assets.Scripts
         {
             AchievementsPanel.SetActive(true);
             AchievementsPanel.transform.parent.transform.SetAsLastSibling();
-            UpdateAllAchievements();
         }
 
         /// <summary>
@@ -67,20 +111,21 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates all achievements for the user interface.
+        /// Initializes all achievement badges based on their
+        /// achieved state in <see cref="AchievementsManager"/>.
         /// </summary>
-        private void UpdateAllAchievements()
+        private void InitAchievements()
         {
-            UpdatePandaAchievement();
             UpdateBearAchievement();
             UpdateBirdAchievement();
+            UpdateCrocodileAchievement();
             UpdateDogAchievement();
             UpdateElephantAchievement();
             UpdateMonkeyAchievement();
+            UpdateOstrichAchievement();
+            UpdatePandaAchievement();
             UpdatePenguinAchievement();
             UpdateSquirrelAchievement();
-            UpdateOstrichAchievement();
-            UpdateCrocodileAchievement();
         }
 
         /// <summary>
@@ -89,6 +134,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdatePandaAchievement()
         {
+            if (PandaEnabledBadge == null || PandaDisabledBadge == null) return;
             if (AchievementsManager.Instance.PandaAchieved)
             {
                 PandaEnabledBadge.enabled = true;
@@ -107,6 +153,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateBearAchievement()
         {
+            if (BearEnabledBadge == null || BearDisabledBadge == null) return;
             if (AchievementsManager.Instance.BearAchieved)
             {
                 BearEnabledBadge.enabled = true;
@@ -125,6 +172,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateBirdAchievement()
         {
+            if (BirdEnabledBadge == null || BirdDisabledBadge == null) return;
             if (AchievementsManager.Instance.BirdAchieved)
             {
                 BirdEnabledBadge.enabled = true;
@@ -143,6 +191,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateDogAchievement()
         {
+            if (DogEnabledBadge == null || DogDisabledBadge == null) return;
             if (AchievementsManager.Instance.DogAchieved)
             {
                 DogEnabledBadge.enabled = true;
@@ -161,6 +210,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateElephantAchievement()
         {
+            if (ElephantEnabledBadge == null || ElephantDisabledBadge == null) return;
             if (AchievementsManager.Instance.ElephantAchieved)
             {
                 ElephantEnabledBadge.enabled = true;
@@ -179,6 +229,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateMonkeyAchievement()
         {
+            if (MonkeyEnabledBadge == null || MonkeyDisabledBadge == null) return;
             if (AchievementsManager.Instance.MonkeyAchieved)
             {
                 MonkeyEnabledBadge.enabled = true;
@@ -197,6 +248,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdatePenguinAchievement()
         {
+            if (PenguinEnabledBadge == null || PenguinDisabledBadge == null) return;
             if (AchievementsManager.Instance.PenguinAchieved)
             {
                 PenguinEnabledBadge.enabled = true;
@@ -215,6 +267,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateSquirrelAchievement()
         {
+            if (SquirrelEnabledBadge == null || SquirrelDisabledBadge == null) return;
             if (AchievementsManager.Instance.SquirrelAchieved)
             {
                 SquirrelEnabledBadge.enabled = true;
@@ -233,6 +286,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateOstrichAchievement()
         {
+            if (OstrichEnabledBadge == null || OstrichDisabledBadge == null) return;
             if (AchievementsManager.Instance.OstrichAchieved)
             {
                 OstrichEnabledBadge.enabled = true;
@@ -251,6 +305,7 @@ namespace Assets.Scripts
         /// </summary>
         private void UpdateCrocodileAchievement()
         {
+            if (CrocodileEnabledBadge == null || CrocodileDisabledBadge == null) return;
             if (AchievementsManager.Instance.CrocodileAchieved)
             {
                 CrocodileEnabledBadge.enabled = true;
