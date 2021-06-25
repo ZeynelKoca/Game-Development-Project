@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6762406366089532001}
-  - component: {fileID: 8897048005516619582}
+  - component: {fileID: 2151996780119133383}
   m_Layer: 0
   m_Name: Spatie
   m_TagString: Untagged
@@ -111,7 +111,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 99.9, y: -90, z: -90}
---- !u!95 &8897048005516619582
+--- !u!95 &2151996780119133383
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ Animator:
   m_GameObject: {fileID: 6238387557083318491}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba53030ff85d952429436b237eb36328, type: 2}
+  m_Controller: {fileID: 9100000, guid: ad69a918cdf0c1147a82f741cb90adda, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
