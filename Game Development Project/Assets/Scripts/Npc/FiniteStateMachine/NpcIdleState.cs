@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts.Npc.FiniteStateMachine
+﻿namespace Assets.Scripts.Npc.FiniteStateMachine
 {
     public class NpcIdleState : INpcState
     {
@@ -13,6 +11,8 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
         public INpcState ExecuteState()
         {
+            _npcTrigger.Npc.InteractButton.SetActive(false);
+
             if (_npcTrigger.Npc.Interactable)
             {
                 return _npcTrigger.NpcInteractableState;

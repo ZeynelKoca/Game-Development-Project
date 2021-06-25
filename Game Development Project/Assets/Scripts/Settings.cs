@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -10,16 +11,20 @@ namespace Assets.Scripts
     {
         public GameObject SettingsPanel;
         public Slider VolumeSlider;
+        public Slider SensitivitySlider;
         public Toggle FullscreenToggle;
         public Dropdown ResolutionsDropdown;
         public AudioMixer AudioMixer;
+
+        public static event EventHandler OnMouseSensitivityChanged;
+        public static event EventHandler OnVolumeChanged;
 
         private Resolution[] _resolutions;
 
         /// <summary>
         /// Gets the player preference for the volume setting.
         /// </summary>
-        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", -25f);
+        public static float VolumeSetting => PlayerPrefs.GetFloat("SoundVolume", 0.4f);
 
         /// <summary>
         /// Gets the player preference for the fullscreen setting.
@@ -31,26 +36,45 @@ namespace Assets.Scripts
         /// </summary>
         public static int ResolutionSetting => PlayerPrefs.GetInt("Resolution", -1);
 
+        /// <summary>
+        /// Gets the player preference for the mouse sensitivity setting.
+        /// </summary>
+        public static float MouseSensitivitySetting => PlayerPrefs.GetFloat("MouseSensitivity", 1f);
+
+        void Awake()
+        {
+            InitializeSettingsInterface();
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-            VolumeSlider.value = VolumeSetting;
-            FullscreenToggle.isOn = FullscreenSetting;
-            SetDropdownResolutions();
-
             InitializeGameSettings();
         }
 
+        /// <summary>
+        /// Initializes the UI objects with the currently set player preferences.
+        /// </summary>
+        private void InitializeSettingsInterface()
+        {
+            FullscreenToggle.isOn = FullscreenSetting;
+
+            AudioMixer.SetFloat("MainVolume", Mathf.Log(VolumeSetting) * 20);
+            VolumeSlider.value = VolumeSetting;
+
+            SensitivitySlider.value = MouseSensitivitySetting;
+        }
 
         /// <summary>
         /// Initializes the game with the currently set player preferences.
         /// </summary>
         private void InitializeGameSettings()
         {
-            Screen.fullScreen = FullscreenSetting;
-
-            var currentResolution = _resolutions[ResolutionSetting];
-            Screen.SetResolution(currentResolution.width, currentResolution.height, FullscreenSetting);
+            SetFullscreenSetting();
+            SetDropdownResolutions();
+            SetResolutionSetting();
+            SetVolumeSetting();
+            SetMouseSensitivitySetting();
         }
 
         /// <summary>
@@ -59,7 +83,7 @@ namespace Assets.Scripts
         /// </summary>
         private void SetDropdownResolutions()
         {
-            _resolutions = Screen.resolutions;
+            _resolutions = GetScreenResolutions();
             ResolutionsDropdown.ClearOptions();
 
             var currentResolution = new Resolution();
@@ -67,7 +91,6 @@ namespace Assets.Scripts
             foreach (var resolution in _resolutions)
             {
                 dropdownOptions.Add($"{resolution.width} x {resolution.height}");
-
                 if (resolution.height == Screen.currentResolution.height &&
                     resolution.width == Screen.currentResolution.width)
                 {
@@ -85,6 +108,60 @@ namespace Assets.Scripts
         }
 
         /// <summary>
+        /// Gets all supported resolutions for the user's hardware and removes
+        /// all duplicate values (resulted from different refresh rates).
+        /// </summary>
+        private Resolution[] GetScreenResolutions()
+        {
+            return Screen.resolutions
+                .Select(resolution => new Resolution {width = resolution.width, height = resolution.height}).Distinct()
+                .ToArray();
+        }
+
+        /// <summary>
+        /// Stores the current volume setting as a player preference.
+        /// </summary>
+        public void SetVolumeSetting()
+        {
+            PlayerPrefs.SetFloat("SoundVolume", VolumeSlider.value);
+            VolumeSlider.value = VolumeSetting;
+
+            AudioMixer.SetFloat("MainVolume", Mathf.Log(VolumeSetting) * 20);
+            OnVolumeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Stores the current fullscreen setting as a player preference.
+        /// </summary>
+        public void SetFullscreenSetting()
+        {
+            PlayerPrefs.SetInt("Fullscreen", FullscreenToggle.isOn ? 1 : 0);
+            Screen.fullScreen = FullscreenSetting;
+        }
+
+        /// <summary>
+        /// Sets the current resolution setting as a player preference.
+        /// </summary>
+        public void SetResolutionSetting()
+        {
+            PlayerPrefs.SetInt("Resolution", ResolutionsDropdown.value);
+
+            var currentResolution = _resolutions[ResolutionSetting];
+            Screen.SetResolution(currentResolution.width, currentResolution.height, FullscreenSetting);
+        }
+
+        /// <summary>
+        /// Sets the current mouse sensitivity setting as a player preference.
+        /// </summary>
+        public void SetMouseSensitivitySetting()
+        {
+            PlayerPrefs.SetFloat("MouseSensitivity", SensitivitySlider.value);
+            SensitivitySlider.value = MouseSensitivitySetting;
+
+            OnMouseSensitivityChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
         /// Activates the settings panel.
         /// </summary>
         public void ShowSettingsPanel()
@@ -99,38 +176,6 @@ namespace Assets.Scripts
         public void CloseSettingsPanel()
         {
             SettingsPanel.SetActive(false);
-        }
-
-        /// <summary>
-        /// Stores the current volume setting as a player preference.
-        /// </summary>
-        public void SetVolumeSetting()
-        {
-            PlayerPrefs.SetFloat("SoundVolume", VolumeSlider.value);
-
-            AudioMixer.SetFloat("MainVolume", VolumeSetting);
-            VolumeSlider.value = VolumeSetting;
-        }
-
-        /// <summary>
-        /// Stores the current fullscreen setting as a player preference.
-        /// </summary>
-        public void SetFullscreenSetting()
-        {
-            PlayerPrefs.SetInt("Fullscreen", FullscreenToggle.isOn ? 1 : 0);
-
-            Screen.fullScreen = FullscreenSetting;
-        }
-
-        /// <summary>
-        /// Sets the current resolution setting as a player preference.
-        /// </summary>
-        public void SetResolutionSetting()
-        {
-            PlayerPrefs.SetInt("Resolution", ResolutionsDropdown.value);
-
-            var currentResolution = _resolutions[ResolutionSetting];
-            Screen.SetResolution(currentResolution.width, currentResolution.height, FullscreenSetting);
         }
     }
 }

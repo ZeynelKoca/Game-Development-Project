@@ -19,13 +19,17 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             InitTriggerData();
 
-            if (_npcTrigger.GamePaused && Input.anyKeyDown)
+            if (_npcTrigger.TriggerInteracted && !PauseMenuController.GamePausedState && Input.anyKeyDown)
             {
-                _npcTrigger.Npc.Talk(_npcTrigger.Text);
-                
-                if (_npcTrigger.Npc.DialogDone)
+                if (!Input.GetKeyDown(KeyCode.P) && !Input.GetKeyDown(KeyCode.Escape))
                 {
-                    return _npcTrigger.NpcCompletedState;
+                    _npcTrigger.Npc.DisplayDialogSentence();
+
+                    if (_npcTrigger.Npc.DialogDone)
+                    {
+                        Interacted = false;
+                        return _npcTrigger.NpcInteractionFinishedState;
+                    }
                 }
             }
 
@@ -40,14 +44,23 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
         {
             if (!Interacted)
             {
-                _npcTrigger.Text.enabled = true;
-                _npcTrigger.GamePaused = true;
+                _npcTrigger.Npc.InteractButton.SetActive(false);
+                _npcTrigger.Npc.UiText.enabled = true;
+                _npcTrigger.TriggerInteracted = true;
                 _npcTrigger.Npc.Camera.enabled = true;
-                _player.transform.position = _npcTrigger.CalculateNewPlayerPosition();
                 var playerMovement = _player.GetComponent<PlayerMovementController>();
                 playerMovement.FaceDirection(_npcTrigger.NpcPatrol.transform.position);
-                _npcTrigger.NpcPatrol.FaceDirection(_player.transform.position);
-                _npcTrigger.Npc.InitDialog(_npcTrigger.Text);
+                _npcTrigger.NpcFacePlayer.FaceDirection(_npcTrigger.Npc.Camera.transform);
+
+                if (_npcTrigger.Npc.HasActiveQuest())
+                {
+                    _npcTrigger.Npc.StartInitialDialog();
+                }
+                else
+                {
+                    _npcTrigger.Npc.StartFinishedDialog();
+                }
+
                 Time.timeScale = 0f;
                 Interacted = true;
             }

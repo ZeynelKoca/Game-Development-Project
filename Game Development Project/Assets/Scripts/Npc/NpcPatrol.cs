@@ -1,64 +1,41 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.Npc
 {
     public class NpcPatrol : MonoBehaviour
     {
         public float MovementSpeed;
-        public float StartWaitTime;
-        public Animator Animator;
+        public float PatrolWaitTime;
         public Transform CameraTransform;
         public Transform[] PatrolSpots;
 
-        private int _currentPatrolIndex;
-        private float _waitTime;
+        private NavMeshAgent _navMeshAgent;
         private Quaternion _fixedCameraRotation;
         private Vector3 _cameraDeltaPosition;
+
+        private int _currentPatrolIndex;
+        private bool _isNpcWaiting;
 
         // Start is called before the first frame update
         void Start()
         {
             _currentPatrolIndex = 0;
-            _waitTime = StartWaitTime;
             _fixedCameraRotation = CameraTransform.rotation;
             _cameraDeltaPosition = CameraTransform.position - transform.position;
+
+            InitNavMesh();
         }
 
-        // Update is called once per frame
-        void Update()
+        /// <summary>
+        /// Initializes the navigation mesh of the NPC.
+        /// </summary>
+        private void InitNavMesh()
         {
-            var patrolTarget = PatrolSpots[_currentPatrolIndex].position;
+            _navMeshAgent = GetComponent<NavMeshAgent>();
 
-            if (!(Vector3.Distance(transform.position, patrolTarget) < 0.2f))
-            {
-                // Npc is still walking towards the next patrol spot, so reset the wait timer.
-                _waitTime = StartWaitTime;
-                DoNpcTranslation(patrolTarget);
-                return;
-            }
-
-            if (_waitTime <= 0f)
-            {
-                // Once the wait timer is done, move to the next patrol spot or reset it if the last patrol spot is reached.
-                if (_currentPatrolIndex != PatrolSpots.Length - 1)
-                {
-                    _currentPatrolIndex += 1;
-                }
-                else
-                {
-                    _currentPatrolIndex = 0;
-                }
-            }
-            else
-            {
-                // Target spot is reached so start the wait timer and reset walking animation state.
-                if (Animator != null)
-                {
-                    Animator.SetBool("IsWalking", false);
-                }
-
-                _waitTime -= Time.deltaTime;
-            }
+            _navMeshAgent.speed = MovementSpeed;
         }
 
         void LateUpdate()
@@ -70,33 +47,47 @@ namespace Assets.Scripts.Npc
             CameraTransform.position = transform.position + _cameraDeltaPosition;
         }
 
-        /// <summary>
-        /// Calculates the new position and rotation values for the current npc according
-        /// to the specified patrol target. Also starts the walking animation state.
-        /// </summary>
-        /// <param name="patrolTarget">The patrol target.</param>
-        private void DoNpcTranslation(Vector3 patrolTarget)
+        // Update is called once per frame
+        void Update()
         {
-            if (Animator != null)
+            var patrolTarget = PatrolSpots[_currentPatrolIndex].position;
+
+            if (Vector3.Distance(transform.position, patrolTarget) > 2f)
             {
-                Animator.SetBool("IsWalking", true);
+                // Npc is still walking towards the next patrol spot, so reset the wait timer.
+                _navMeshAgent.SetDestination(patrolTarget);
+                return;
             }
 
-            var maxDistance = MovementSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, patrolTarget, maxDistance);
-
-            var targetRotation = Quaternion.LookRotation(patrolTarget - transform.position, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxDistance);
+            // Boolean check in order to prevent Coroutine call stacking.
+            if (!_isNpcWaiting)
+            {
+                // Npc has reached a patrol target, start the wait timer for this spot.
+                StartCoroutine(SetNextPatrolTarget(PatrolWaitTime));
+            }
         }
 
         /// <summary>
-        /// Rotates the x-axis of the current npc in order to face the specified target position.
+        /// Pauses the Npc according to the specified amount of seconds
+        /// and afterwards, sets the next patrol target.
         /// </summary>
-        /// <param name="targetPosition">The target position.</param>
-        public void FaceDirection(Vector3 targetPosition)
+        /// <param name="waitTime">The amount of time that the Npc will wait.</param>
+        private IEnumerator SetNextPatrolTarget(float waitTime)
         {
-            var forward = new Vector3(targetPosition.x - transform.position.x, 0f, 0f);
-            transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+            _isNpcWaiting = true;
+            yield return new WaitForSeconds(waitTime);
+
+            if (_currentPatrolIndex != PatrolSpots.Length - 1)
+            {
+                _currentPatrolIndex += 1;
+            }
+            else
+            {
+                // If the last patrol target has been reached, reset target to the first patrol spot.
+                _currentPatrolIndex = 0;
+            }
+
+            _isNpcWaiting = false;
         }
     }
 }

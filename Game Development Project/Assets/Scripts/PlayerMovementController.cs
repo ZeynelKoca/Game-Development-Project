@@ -5,8 +5,8 @@ namespace Assets.Scripts
 {
     public class PlayerMovementController : MonoBehaviour
     {
-        const int MIN_IDLE_TIME = 4;
-        const int MAX_IDLE_TIME = 7;
+        private const int MIN_IDLE_TIME = 4;
+        private const int MAX_IDLE_TIME = 7;
 
         public Animator Animator;
 

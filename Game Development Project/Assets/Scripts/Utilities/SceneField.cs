@@ -11,7 +11,7 @@ namespace Assets.Scripts.Utilities
     public class SceneField
     {
         [SerializeField] private Object _sceneAsset;
-        [SerializeField] private string _sceneName = "";
+        [SerializeField] private string _sceneName = String.Empty;
 
         public string SceneName => _sceneName;
 
