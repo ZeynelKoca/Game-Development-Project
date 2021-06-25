@@ -55,7 +55,7 @@ namespace Assets.Scripts.Npc
             {
                 AnyNpcTriggerActive = false;
                 IsTriggerActive = false;
-                Npc.InteractText.enabled = false;
+                Npc.InteractButton.SetActive(false);
             }
         }
 

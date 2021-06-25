@@ -20,9 +20,9 @@ namespace Assets.Scripts.Npc.FiniteStateMachine
 
             if (_npcTrigger.IsTriggerActive && !_npcTrigger.TriggerInteracted)
             {
-                _npcTrigger.Npc.InteractText.enabled = true;
+                _npcTrigger.Npc.InteractButton.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     return _npcTrigger.NpcInteractedState;
                 }

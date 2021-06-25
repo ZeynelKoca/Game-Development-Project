@@ -48,10 +48,14 @@ namespace Assets.Scripts
         public Image CrocodileEnabledBadge;
         public Image CrocodileDisabledBadge;
 
+        private bool _initialized;
+
         void Start()
         {
             SubscribeToExternalEvents();
             InitAchievements();
+
+            _initialized = true;
         }
 
         void OnDestroy()
@@ -64,16 +68,19 @@ namespace Assets.Scripts
         /// </summary>
         private void SubscribeToExternalEvents()
         {
-            AchievementsManager.Instance.OnBearAchievementChanged += UpdateBearAchievement;
-            AchievementsManager.Instance.OnPandaAchievementChanged += UpdatePandaAchievement;
-            AchievementsManager.Instance.OnBirdAchievementChanged += UpdateBirdAchievement;
-            AchievementsManager.Instance.OnSquirrelAchievementChanged += UpdateSquirrelAchievement;
-            AchievementsManager.Instance.OnDogAchievementChanged += UpdateDogAchievement;
-            AchievementsManager.Instance.OnElephantAchievementChanged += UpdateElephantAchievement;
-            AchievementsManager.Instance.OnMonkeyAchievementChanged += UpdateMonkeyAchievement;
-            AchievementsManager.Instance.OnPenguinAchievementChanged += UpdatePenguinAchievement;
-            AchievementsManager.Instance.OnOstrichAchievementChanged += UpdateOstrichAchievement;
-            AchievementsManager.Instance.OnCrocodileAchievementChanged += UpdateCrocodileAchievement;
+            if (!_initialized)
+            {
+                AchievementsManager.Instance.OnBearAchievementChanged += UpdateBearAchievement;
+                AchievementsManager.Instance.OnPandaAchievementChanged += UpdatePandaAchievement;
+                AchievementsManager.Instance.OnBirdAchievementChanged += UpdateBirdAchievement;
+                AchievementsManager.Instance.OnSquirrelAchievementChanged += UpdateSquirrelAchievement;
+                AchievementsManager.Instance.OnDogAchievementChanged += UpdateDogAchievement;
+                AchievementsManager.Instance.OnElephantAchievementChanged += UpdateElephantAchievement;
+                AchievementsManager.Instance.OnMonkeyAchievementChanged += UpdateMonkeyAchievement;
+                AchievementsManager.Instance.OnPenguinAchievementChanged += UpdatePenguinAchievement;
+                AchievementsManager.Instance.OnOstrichAchievementChanged += UpdateOstrichAchievement;
+                AchievementsManager.Instance.OnCrocodileAchievementChanged += UpdateCrocodileAchievement;
+            }
         }
 
         /// <summary>
@@ -81,16 +88,21 @@ namespace Assets.Scripts
         /// </summary>
         private void UnsubscribeFromExternalEvents()
         {
-            AchievementsManager.Instance.OnBearAchievementChanged -= UpdateBearAchievement;
-            AchievementsManager.Instance.OnPandaAchievementChanged -= UpdatePandaAchievement;
-            AchievementsManager.Instance.OnBirdAchievementChanged -= UpdateBirdAchievement;
-            AchievementsManager.Instance.OnSquirrelAchievementChanged -= UpdateSquirrelAchievement;
-            AchievementsManager.Instance.OnDogAchievementChanged -= UpdateDogAchievement;
-            AchievementsManager.Instance.OnElephantAchievementChanged -= UpdateElephantAchievement;
-            AchievementsManager.Instance.OnMonkeyAchievementChanged -= UpdateMonkeyAchievement;
-            AchievementsManager.Instance.OnPenguinAchievementChanged -= UpdatePenguinAchievement;
-            AchievementsManager.Instance.OnOstrichAchievementChanged -= UpdateOstrichAchievement;
-            AchievementsManager.Instance.OnCrocodileAchievementChanged -= UpdateCrocodileAchievement;
+            if (_initialized)
+            {
+                AchievementsManager.Instance.OnBearAchievementChanged -= UpdateBearAchievement;
+                AchievementsManager.Instance.OnPandaAchievementChanged -= UpdatePandaAchievement;
+                AchievementsManager.Instance.OnBirdAchievementChanged -= UpdateBirdAchievement;
+                AchievementsManager.Instance.OnSquirrelAchievementChanged -= UpdateSquirrelAchievement;
+                AchievementsManager.Instance.OnDogAchievementChanged -= UpdateDogAchievement;
+                AchievementsManager.Instance.OnElephantAchievementChanged -= UpdateElephantAchievement;
+                AchievementsManager.Instance.OnMonkeyAchievementChanged -= UpdateMonkeyAchievement;
+                AchievementsManager.Instance.OnPenguinAchievementChanged -= UpdatePenguinAchievement;
+                AchievementsManager.Instance.OnOstrichAchievementChanged -= UpdateOstrichAchievement;
+                AchievementsManager.Instance.OnCrocodileAchievementChanged -= UpdateCrocodileAchievement;
+
+                _initialized = false;
+            }
         }
 
         /// <summary>
